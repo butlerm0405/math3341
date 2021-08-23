@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 11: MATLAB Integration Routines & Gauss Quadrature
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 11/08/2021
 
 clear; close all; clc;

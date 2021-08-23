@@ -137,11 +137,11 @@ def update_makefile_info(file, lab_info, author='first_name last_name', teacher=
 
 if __name__ == '__main__':
     base = 'MATH3341'
-    start_date = '2021-08-23'
-    author_short = 'Firstname Lastname'
-    author_long = 'Firstname Lastname'
-    teacher = 'Libao Jin'
-    skip_week = 10
+    start_date = '2021-08-25'
+    author_short = 'Melissa Butler'
+    author_long = 'Melissa Butler'
+    teacher = 'Melissa Butler'
+    skip_week = 13
     total_labs = 14
     target_extensions =  ['.m', '.tex', '.pdc', '.sh']
     lab_info_file = 'lab_info.json'

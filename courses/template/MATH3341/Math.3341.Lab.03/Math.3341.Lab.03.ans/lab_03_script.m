@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 03: Functions and Control Flows
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 09/06/2021
 
 clc             % clear command window

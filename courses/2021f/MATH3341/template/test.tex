@@ -1,0 +1,57 @@
+\documentclass[11pt]{lab-exercise}
+
+
+\begin{document} %****************************************************
+\maketitle
+\pagestyle{exercise-style}
+\thispagestyle{empty}
+%=============================================
+Download the file \verb|lab_14_files.zip|, un-zip it.
+%---------------------------------------------
+\section{Direction Fields and Solution Curves}
+%---------------------------------------------
+Given the following ODE and the initial condition,
+$$
+\frac{dy}{dt} = -y(t) - 5 e^{-t} \sin(5t), \quad y(0) = -2, \quad t \in [0, 3].
+$$
+\begin{enumerate}[a.]
+    \item In \verb|lab_14_script.m|, define anoymous function \verb`dydt` to be the right-hand side of the ODE.
+    \item Define \verb`a`, \verb`b` to be the left and right endpoint of the interval $[0, 3]$, respectively.
+    \item Define \verb`tStep` to be the step size $\Delta t = 0.01$.
+    \item Define \verb`tSpan` to be a vector starting from \verb`a` to \verb`b` with step size \verb`tStep` using colon notation.
+    \item At line 20, use \verb`ode23` to solve the ODE.
+    \item At line 40, plot \verb`tSol(:, i)` against \verb`ySol(:, i)` with line style specified in the cell array \verb`LineStyle`.
+    \item Run the script and see whether it works. If it does work, add more initial conditions at line 17: $y(0) = 0$, $y(0) = 2$, $y(0) = 4$.
+\end{enumerate}
+%---------------------------------------------
+\section{System of ODEs}
+%---------------------------------------------
+Next, use the built-in ODE solver \verb`ode45` to solve the system of ODEs for Problem 4 of Homework 7. The system of ODEs is as follows:
+$$
+\begin{cases}
+    y'_1(t) = y_3, \\
+    y'_2(t) = y_4, \\
+    y'_3(t) = -2 y_1 + (3/2) y_2, \\
+    y'_4(t) = (4/3) y_1 - 3 y_2, \\
+\end{cases}
+\quad
+\mathbf{y}(0) =
+\begin{bmatrix}
+    -1 \\ 4 \\ 1 \\ 1
+\end{bmatrix},
+\quad
+t \in [0, 15].
+$$
+\begin{enumerate}[a.]
+    \item Uncomment line 49 through 88, define an anoymous function (you can refer to the example in reference page for \verb`ode45`. To open the reference page, type \verb`doc ode45` in the Command Window).
+    \item Repeat the steps in Part I to define \verb`a`, \verb`b`, \verb`tStep`, \verb`tSpan`, and \verb`y0`.
+    \item Use \verb`ode45` to solve the system of ODEs at line 57.
+    \item At line 63, plot \verb`t` against \verb`y(:, i)` with line style specified in the cell array \verb`LineStyle`.
+    \item At line 73, plot \verb`y(:, 1)` against \verb`y(:, 3)`.
+\end{enumerate}
+%---------------------------------------------
+At last, run the script \verb|lab_14_script.m|. Upload the script file \verb|lab_14_script.m|, and figure files \verb|lab_14_figure_1.pdf|, \verb|lab_14_figure_2.pdf|, \verb|lab_14_figure_3.pdf| to Overleaf. Recompile, and submit the generated \verb|.pdf| file on WyoCourses.
+
+\section{Lipsum}
+\lipsum.
+\end{document}

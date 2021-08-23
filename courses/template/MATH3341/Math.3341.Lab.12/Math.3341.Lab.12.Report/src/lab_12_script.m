@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 12: Romberg Integration
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 11/15/2021
 
 clear; clc;

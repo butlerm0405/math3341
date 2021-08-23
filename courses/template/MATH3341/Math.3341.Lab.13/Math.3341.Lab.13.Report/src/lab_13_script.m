@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 13 Histograms, Random Numbers and Monte Carlo Integration
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 11/22/2021
 
 clear; close all; clc; warning off;

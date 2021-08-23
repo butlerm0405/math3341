@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 02: Variables, Arrays and Scripts
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 08/30/2021
 
 clc             % clear command window
