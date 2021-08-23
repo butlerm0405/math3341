@@ -1,0 +1,35 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.10| in the Command Window, and type \verb|edit lab_10_script| in the Command Window to edit \verb|lab_10_script.m|.
+%
+\section{Define Meshgrid and Evaluate Function at Meshgrid}
+\begin{enumerate}[(a)]
+    \item Define an anonymous function \verb|f| using the following formula:
+        $$
+        f(x, y) = \pi^2 [\sin(\pi x) + 4 \sin(2\pi x) + \sin(\pi y) + 4 \sin(2 \pi y)].
+        $$
+    \item Define both \verb|x| and \verb|y| starting from -1 to 1 with 30 points using \verb|linspace|.
+    \item Create meshgrid by \verb|[X, Y] = meshgrid(x, y);|
+    \item Evaluate $f(x, y)$ at the mesh grid by \verb|Z = f(X, Y)|.
+\end{enumerate}
+%---------------------------------------------
+\section{Mesh Plots}
+%---------------------------------------------
+
+\begin{enumerate}[(a)]
+    \item Run the script \verb|lab_10_script.m|.
+    \item Mimick the first subplot to create subplot 2, use \verb|meshc(Z)| instead of \verb|mesh(Z)|, change the colormap to \verb|winter| and also change the title to be \verb|winter| as well.
+    \item Repeat the above step to create subplot 3 with \verb|mesh(x, y, Z)| and colormap to be \verb|pink|.
+    \item Repeat the above step to create subplot 4 with \verb|mesh(Z)| and colormap to be \verb|prism|. Add \verb|hidden off| to the line below the last line.
+\end{enumerate}
+
+%---------------------------------------------
+\section{Surf Plots}
+%---------------------------------------------
+Repeat Part 2 to create 4 subplots.
+\begin{enumerate}[(a)]
+    \item For subplot 1, change \verb|mesh(Z)| to \verb|surf(Z)|.
+    \item For subplot 2, change \verb|meshc(Z)| to \verb|surfc(Z)|.
+    \item For subplot 3, change \verb|mesh(x, y, Z)| to \verb|surf(x, y, Z)|.
+    \item For subplot 4, change \verb|mesh(Z)| to \verb|surf(Z)|.
+\end{enumerate}
+
+At last, run the script \verb|lab_10_script.m|, it might take some time to save the figures. You will upload the script file \verb|lab_10_script.m|, and two figure files \verb|lab_10_figure_1.pdf|, \verb|lab_10_figure_2.pdf| to Overleaf, and in \verb|body.tex| change the caption for each figuer. Recompile, and submit the generated .pdf file on WyoCourses.

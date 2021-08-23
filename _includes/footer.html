@@ -1,0 +1,97 @@
+<a role="button" id="backToTop" class="up" data-scroll href="#scroll"><svg class="icon icon-arrow-up"><use xlink:href="#icon-arrow-up"></use></svg></a>
+<footer>
+  <p>
+    &copy; 2021 <a href={{ site.url }} >UWyo Math</a> ・ <a href="{{ site.url }}/credits.html">Credits</a>
+  </p>
+</footer>
+<script src="{{ "/assets/js/main.js" | prepend: site.url }}"></script>
+<script src="{{ "/assets/js/particles.min.js" | prepend: site.url }}"></script>
+<script type="text/javascript">
+  /* change background image */
+  var background_images = [ "ODESZA-Backgrounds-Desktop-15-Retina.jpg", "downtown-toronto.jpg", "photo-1507608616759-54f48f0af0ee.jpeg", "Ross.Hall.Sunset.jpg", "Prexy.Pasture.jpg"];
+  var i = getRandomInt(background_images.length);
+  var background_image = "repeating-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('{{ site.url }}/assets/img/" + background_images[i] + "')";
+  var post_title = document.getElementsByClassName("post-title");
+  if (post_title.length == 1) {
+    if (post_title[0].innerHTML.includes("MATH")) {
+      post_title[0].innerHTML = post_title[0].innerHTML.substring(0, 9);
+      var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+      post_title[0].style.fontFamily = "Roboto Condensed";
+      var subtitle = document.getElementsByClassName("subtitle")[0];
+      if (width < 480) {
+        post_title[0].style.fontSize = "30px";
+        subtitle.style.fontSize = "20px";
+      } else {
+        post_title[0].style.fontSize = "60px";
+      }
+
+      var background_image = "repeating-linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url('{{ site.url }}/assets/img/" + background_images[4] + "')";
+      document.getElementsByClassName("icon-menu")[0].style.display = "none";
+      document.getElementsByClassName("icon-search")[0].style.display = "none";
+      document.getElementsByClassName("author")[0].style.display = "none";
+      document.getElementsByClassName("share")[0].style.display = "none";
+      var months = {
+        "Jan": 1,
+        "Feb": 2,
+        "Mar": 3,
+        "Apr": 4,
+        "May": 5,
+        "Jun": 6,
+        "Jul": 7,
+        "Aug": 8,
+        "Sep": 9,
+        "Oct": 10,
+        "Nov": 11,
+        "Dec": 12,
+      };
+      var date_element = document.getElementsByClassName("date")[0];
+      var dates = date_element.innerHTML.split(" ");
+      console.log(dates);
+      var month = months[dates[1]];
+      if (month >= 7) {
+        date_element.innerHTML = "Fall " + dates[2];
+      } else if (month >= 5) {
+        date_element.innerHTML = "Summer " + dates[2];
+      } else {
+        date_element.innerHTML = "Spring " + dates[2];
+      }
+    }
+  }
+  document.getElementById("particles-js").style.backgroundImage=background_image;
+
+  /* backToTop button */
+  var backToTopButton = document.getElementById("backToTop");
+  window.onscroll = function() { scrollFunction() };
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 1200 || document.documentElement.scrollTop > 1200) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  }
+
+  /* Generate Navigation Bar */
+  var indices = [[0, 0], [0, 14], [14, 17], [17, 17]];
+  var h2s = document.getElementsByTagName('h2');
+  var h3s = document.getElementsByTagName('h3');
+  var nav = document.getElementById('navigationBar');
+  var body = `<ul class='nav'>`;
+  for (var i = 0; i < indices.length; ++i) {
+    if (indices[i][0] == indices[i][1]) {
+      body += `<li><a data-scroll href='#${h2s[i + 1].id}'>${h2s[i + 1].innerText}</a></li>`;
+    } else {
+      body += `<li><div><a data-scroll href='#${h2s[i + 1].id}'>${h2s[i + 1].innerText}</a><ul>`;
+      for (var j = indices[i][0]; j < indices[i][1]; ++j) {
+        body += `<li><a data-scroll href='#${h3s[j].id}'>${h3s[j].innerText}</a></li>`;
+      }
+      body += `</ul></div></li>`;
+    }
+  }
+  body += `</ul>`;
+  nav.innerHTML = body;
+</script>

@@ -1,0 +1,97 @@
+% MATH 3341: Introduction to Scientific Computing Lab
+% Libao Jin
+% November 15, 2021
+
+# Lab 12: Romberg Integration
+
+## Romberg Integration
+
+### Composite Trapezoidal Rule
+
+> * Composite Trapezoidal rule for approximating the integral of a function $f(x)$ on an interval $[a, b]$ using $m$ subintervals:
+>   $$
+>   I
+>   = \int_{a}^{b} f(x) \, dx
+>   \approx \frac{1}{2} \sum_{j = 0}^{m - 1} (x_{j + 1} - x_{j}) (y_{j + 1} + y_{j}),
+>   $$
+>   where $a = x_{0} < x_{1} < \cdots < x_{m} = b$,  $y_{j} = f(x_{j}), j = 0, \ldots, m$.
+> * Let $x_{j + 1} - x_{j} = h = (b - a) / m, j = 0, 1, \ldots, m - 1$.
+>   $$
+>   I
+>   \approx \frac{1}{2} \sum_{j = 0}^{m - 1} h [f(x_{j + 1}) + f(x_{j})]
+>   = \frac{h}{2} \left[ f(a) + f(b) + 2 \sum_{j = 1}^{m - 1} f(x_j) \right],
+>   $$
+>   where $x_j = x_{0} + jh = a + jh$ for each $j = 0, 1, \ldots, m$.
+
+### Composite Trapezoidal Rule
+
+> * Composite Trapezoidal Rule using $m$ subintervals:
+>   $$
+>   I
+>   \approx \frac{h}{2} \left[ f(a) + f(b) + 2 \sum_{j = 1}^{m - 1} f(a + j h) \right].
+>   $$
+> * Finding approximation for $m_1 = 1, m_2 = 2, m_3 = 4, \ldots, m_n = 2^{n - 1}$ for $n \in \mathbb{N}$. The corresponding step size $h_k$ for each $m_k$ is then given by $h_k = (b - a) / m_k = (b - a) / 2^{k - 1}$. The composite trapezoidal rule then becomes
+>   $$
+>   I
+>   = \int_{a}^{b} f(x) \, dx
+>   \approx \frac{h_k}{2} \left[ f(a) + f(b) + 2 \sum_{j = 1}^{2^{k - 1} - 1} f(a + j h_k) \right].
+>   $$
+
+###
+
+Here we'll use the notation $R_{k, 1}$ to denote the portion used for the trapezoidal approximation. In other words,
+\begin{align*}
+   R_{1, 1} & = \frac{h_1}{2} [f(a) + f(b)] = \frac{b - a}{2} [f(a) + f(b)],
+\\ R_{2, 1} & = \frac{h_2}{2} [f(a) + f(b) + 2 f(a + h_2)]
+\\          & = \frac{1}{2} \frac{h_{1}}{2} \left[f(a) + f(b) + 2 f\left(a + h_{2} \right)\right]
+\\          & = \frac{1}{2} \left\{\frac{h_{1}}{2} \left[f(a) + f(b)\right] + 2 \frac{h_{1}}{2} f\left(a + h_{2} \right)\right\}
+\\          & = \frac{1}{2} [R_{1, 1} + h_1 f(a + h_2)],
+\\ R_{3, 1} & = \frac{1}{2} \{R_{2,1} + h_2 [f(a + h_3) + f(a + 3 h_3)]\}.
+\end{align*}
+
+###
+
+This leads to the Trapezoidal rule in the general form
+$$
+R_{k, 1} = \frac{1}{2} \left[ R_{k - 1, 1} + h_{k - 1} \sum_{j = 1}^{2^{k - 2}} f(a + (2j - 1) h_k)\right] \quad \text{for~} k = 2, 3, \ldots, n.
+$$
+This method converges very slowly on its own. A technique called Richardson's Extrapolation is applied to speed convergence. Essentially, this performs a method of averaging previously calculated entries to obtain the next entry in the table. This is given in general form
+$$
+R_{k, j} = R_{k, j - 1} + \frac{R_{k, j - 1} - R_{k - 1, j - 1}}{4^{j - 1} - 1}.
+$$
+
+###
+
+This method will give us the following entries of $R$ in a tabular format. The number of rows is determined by the value that we desire.
+$$
+\begin{bmatrix}
+R_{1, 1} & & & & & \\
+R_{2, 1} & R_{2, 2} & & & & \\
+R_{3, 1} & R_{3, 2} & R_{3, 3} & & & \\
+R_{4, 1} & R_{4, 2} & R_{4, 3} & R_{4, 4} & & \\
+\vdots & \vdots & \vdots & \vdots & \ddots \\
+R_{n, 1} & R_{n, 2} & R_{n, 3} & R_{n, 4} & \cdots & R_{n, n} \\
+\end{bmatrix}
+$$
+
+### Algorithm
+
+\begin{algorithm}[H]
+    \caption{Romberg Integration}
+    \label{alg:romberg}
+    \SetAlgoLined
+    % \LinesNumbered
+    \SetKwProg{Fn}{Function}{:}{end}
+    \Fn{$\operatorname{romberg}(f, a, b, n)$}{
+        $h \gets b - a$\;
+        $R_{1, 1} \gets [f(a) + f(b)] \cdot h / 2$\;
+        \For {$k \gets 2$ \KwTo $n$} {
+            $\displaystyle R_{k, 1} \gets \frac{1}{2} \left[ R_{k - 1, 1} + h \sum\limits_{j = 1}^{2^{k - 2}} f(a + (2j - 1) \cdot h / 2) \right]$\;
+            \For {$j \gets 2$ \KwTo $k$} {
+                $\displaystyle R_{k, j} \gets R_{k, j - 1} + \frac{R_{k, j - 1} - R_{k - 1, j - 1}}{4^{j - 1} - 1}$\;
+            }
+            $h \gets h / 2$\;
+        }
+        \Return $[R_{1,1}, R_{2, 2}, R_{3, 3}, \ldots, R_{n, n}]$\;
+    }
+\end{algorithm}

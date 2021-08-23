@@ -1,0 +1,110 @@
+%
+% body.tex
+%
+% Copyright © 2020 Libao Jin <jinlibao@outlook.com>
+% Distributed under terms of the MIT license.
+%
+The deadline will be strictly enforced. If you do not submit in time there will be a $20\%$ penalty for each day you're late. If you do not submit in time there will be a $20\%$ penalty upfront plus another $20\%$ for  each day you're late. Remember that you are allowed to work in teams of two on this assignment. You are encouraged to prepare your work in \LaTeX{}; a template will be provided to help you put it all together. If you choose  to submit a hard copy, you may submit only one copy for a team, indicating the names of both contributors. Online submission is encouraged, however, in that case both members of a team should submit the PDF file containing  their work and showing both their names.
+
+\emph{All plots generated in this homework should have a title, legend, and labeled $x$ and $y$-axes.} \\[15pt]
+
+\textbf{Instruction}
+
+\begin{enumerate}[label={\arabic*.}]
+  \item Go to \url{https://www.overleaf.com} and sign in (required).
+  \item Click \emph{Menu} (up left corner), then \emph{Copy Project}.
+  \item Go to \verb|LaTeX/meta.tex| (the file \verb|meta.tex| under the folder \verb|LaTeX|) to change the section and your name, e.g.,
+    \begin{itemize}
+      % \item change title to \verb|\title{MATH 3340-01 Scientific Computing Homework 6}|
+      \item change author to \verb|\author{Albert Einstein \& Carl F. Gauss}|
+    \end{itemize}
+  \item For Problem 1 and 2, you are encouraged to type solutions in \LaTeX{}. But if you want to write it on the printout, make sure your scanned work is \emph{clear} enough, and compile all solutions \emph{in order}, i.e., 1, 2, 3, in a single PDF (failure to do so will lead to points deduction).
+  \item For Problem 3, you need to write function/script files, store results to output files, and save graphs to figure files. Here are suggested names for function files, script files, output files, and figure files:
+    \begin{table}[!hbtp]
+      \centering
+      % \caption{caption}
+      % \label{tab:label}
+      \begin{tabular}{cllll}
+        \toprule
+        Problem & Function File       & Script File     & Output File      & Figure File   \\
+        \midrule
+        3       & \verb|gauss_quad.m| & \verb|hw7_p3.m| & \verb|hw7_p3.txt| &               \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+
+    Once finished, you need to upload these files to the folder \verb|src| on Overleaf. If you have different filenames, please update the filenames in \verb|\lstinputlisting{../src/your_script_name.m}| accordingly. You can code in the provided files in \href{https://libaoj.in/courses/2020s/MATH3340/Homework/7/hw7.zip}{hw7.zip}, and use the MATLAB script \verb|save_results.m| to generate the output files and store the graphs to \verb|.pdf| files automatically (the script filenames should be exactly same as listed above).
+  \item Recompile, download and upload the generated PDF to WyoCourses.
+  \item You may find \href{https://libaoj.in/files/LaTeX.Mathematical.Symbols.pdf}{\LaTeX{}.Mathematical.Symbols.pdf} and the second part of \href{https://libaoj.in/courses/2020s/MATH3341/slides/Math.3341.Lab.01.Slides.pdf}{Lab 01 Slides} and \href{https://libaoj.in/courses/2020s/MATH3341/slides/Math.3341.Lab.02.Slides.pdf}{Lab 02 Slides} helpful.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 1}%
+\label{sec:problem_1}
+Compute, by hand, the value of
+\begin{equation*}
+  \int_{0}^{2 \pi} x^{2} \sin^{2}(x) \, dx
+\end{equation*}
+using both the trapezoidal rule and Simpson's rule. For a fair comparison, keep the same number of function evaluation,  in this case at five equi-spaced $\{x_{0}, x_{1}, x_{2}, x_{3}, x_{4}\}$. Use the same round-off strategy as in the first problem, keeping a minimum of four decimal places in all your calculations.
+\begin{solution}
+  \quad
+  \begin{itemize}
+    % \item Trapezoidal Rule:
+    %   \newpage                                    % DELETE THIS LINE WHEN YOU TYPE THE ANSWER IN LATEX
+    % \item Simpson's Rule:
+    %   \vfill                                      % DELETE THIS LINE WHEN YOU TYPE THE ANSWER IN LATEX
+    \item Output file \verb|hw7_p1.txt|:
+      \lstinputlisting[style=Plain]{../src/hw7_p1.txt}
+    \item Function file \verb|trapezoidal.m|:
+      \lstinputlisting[style=MATLAB]{../src/trapezoidal.m}
+    \item Function file \verb|simpson.m|:
+      \lstinputlisting[style=MATLAB]{../src/simpson.m}
+    \item Script file \verb|hw7_p1.m|:
+      \lstinputlisting[style=MATLAB]{../src/hw7_p1.m}
+  \end{itemize}
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 2}%
+\label{sec:problem_2}
+This computation should again be done by hand. Use Gauss quadrature with $N = 2$, $N = 3$ and $N = 4$ to compute the approximate value for
+\begin{equation*}
+  I = \int_{1}^{3} (x^{3} - 1) e^{-x^{2}} \, dx.
+\end{equation*}
+Perform all calculations by rounding off to four decimal places.
+\begin{solution}
+  \quad
+  \begin{itemize}
+    \item Gauss quadrature with $N = 2$:
+      % \newpage                                    % DELETE THIS LINE WHEN YOU TYPE THE ANSWER HERE
+    \item Gauss quadrature with $N = 3$:
+      % \newpage                                    % DELETE THIS LINE WHEN YOU TYPE THE ANSWER HERE
+    \item Gauss quadrature with $N = 4$:
+      \vfill                                      % DELETE THIS LINE WHEN YOU TYPE THE ANSWER HERE
+  \end{itemize}
+\end{solution}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 3}%
+\label{sec:problem_3}
+Write a MATLAB code that implements the Gauss quadrature calculation in the problem above, but allows for a wider range of values of $N$, from $N = 1$ through $N = 5$.
+\begin{solution}
+  \quad
+  \begin{itemize}
+  \item Output file \verb|hw7_p3.txt|:
+    \lstinputlisting[style=Plain]{../src/hw7_p3.txt}
+  \item Function file \verb|richardson.m|:
+    \lstinputlisting[style=MATLAB]{../src/gauss_quad.m}
+  \item Script file \verb|hw7_p3.m|:
+    \lstinputlisting[style=MATLAB]{../src/hw7_p3.m}
+  \end{itemize}
+\end{solution}
+

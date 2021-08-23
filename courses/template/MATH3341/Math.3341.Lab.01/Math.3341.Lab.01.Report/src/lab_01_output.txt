@@ -1,0 +1,193 @@
+beep off
+help log
+ <strong>log</strong>    Natural logarithm.
+    <strong>log</strong>(X) is the natural logarithm of the elements of X.
+    Complex results are produced if X is not positive.
+ 
+    See also <a href="matlab:help log1p">log1p</a>, <a href="matlab:help log2">log2</a>, <a href="matlab:help log10">log10</a>, <a href="matlab:help exp">exp</a>, <a href="matlab:help logm">logm</a>, <a href="matlab:help reallog">reallog</a>.
+
+    <a href="matlab:doc log">Reference page for log</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('log')">Other functions named log</a>
+
+help sin
+ <strong>sin</strong>    Sine of argument in radians.
+    <strong>sin</strong>(X) is the sine of the elements of X.
+ 
+    See also <a href="matlab:help asin">asin</a>, <a href="matlab:help sind">sind</a>.
+
+    <a href="matlab:doc sin">Reference page for sin</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('sin')">Other functions named sin</a>
+
+help tan
+ <strong>tan</strong>    Tangent of argument in radians.
+    <strong>tan</strong>(X) is the tangent of the elements of X.
+ 
+    See also <a href="matlab:help atan">atan</a>, <a href="matlab:help atan2">atan2</a>, <a href="matlab:help tand">tand</a>, <a href="matlab:help atan2d">atan2d</a>.
+
+    <a href="matlab:doc tan">Reference page for tan</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('tan')">Other functions named tan</a>
+
+2 + 5
+
+ans =
+
+     7
+
+4 ^ 5
+
+ans =
+
+        1024
+
+7 * 6
+
+ans =
+
+    42
+
+3 / 8
+
+ans =
+
+    0.3750
+
+54460 - 2342
+
+ans =
+
+       52118
+
+cosd(50)
+
+ans =
+
+    0.6428
+
+sqrt(4)
+
+ans =
+
+     2
+
+log(3)
+
+ans =
+
+    1.0986
+
+sin(pi / 2)
+
+ans =
+
+     1
+
+exp(34)
+
+ans =
+
+   5.8346e+14
+
+plus(2, 5)
+
+ans =
+
+     7
+
+power(4, 5)
+
+ans =
+
+        1024
+
+times(7, 6)
+
+ans =
+
+    42
+
+rdivide(3, 8)
+
+ans =
+
+    0.3750
+
+minus(54460, 2342)
+
+ans =
+
+       52118
+
+help plus
+ +   Plus.
+    X + Y adds matrices X and Y. X and Y must have compatible sizes. In the
+    simplest cases, they can be the same size or one can be a scalar. Two
+    inputs have compatible sizes if, for every dimension, the dimension
+    sizes of the inputs are either the same or one of them is 1.
+ 
+    C = <strong>plus</strong>(A,B) is called for the syntax 'A + B' when A or B is an
+    object.
+
+    <a href="matlab:doc plus">Reference page for plus</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('plus')">Other functions named plus</a>
+
+help power
+ .^  Array power.
+    Z = X.^Y denotes element-by-element powers. X and Y must have
+    compatible sizes. In the simplest cases, they can be the same size or
+    one can be a scalar. Two inputs have compatible sizes if, for every
+    dimension, the dimension sizes of the inputs are either the same or one
+    of them is 1.
+ 
+    C = <strong>power</strong>(A,B) is called for the syntax 'A .^ B' when A or B is an
+    object.
+ 
+    See also <a href="matlab:help mpower">mpower</a>, <a href="matlab:help nthroot">nthroot</a>, <a href="matlab:help realpow">realpow</a>.
+
+    <a href="matlab:doc power">Reference page for power</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('power')">Other functions named power</a>
+
+help times
+ .*  Array multiply.
+    X.*Y denotes element-by-element multiplication. X and Y must have
+    compatible sizes. In the simplest cases, they can be the same size or
+    one can be a scalar. Two inputs have compatible sizes if, for every
+    dimension, the dimension sizes of the inputs are either the same or one
+    of them is 1.
+ 
+    C = <strong>times</strong>(A,B) is called for the syntax 'A .* B' when A or B is an
+    object.
+ 
+    See also <a href="matlab:help mtimes">mtimes</a>.
+
+    <a href="matlab:doc times">Reference page for times</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('times')">Other functions named times</a>
+
+help rdivide
+ ./  Right array divide.
+    A./B denotes element-by-element division. X and Y must have compatible
+    sizes. In the simplest cases, they can be the same size or one can be a
+    scalar. Two inputs have compatible sizes if, for every dimension, the
+    dimension sizes of the inputs are either the same or one of them is 1.
+ 
+    C = <strong>rdivide</strong>(A,B) is called for the syntax 'A ./ B' when A or B is an
+    object.
+ 
+    See also <a href="matlab:help ldivide">ldivide</a>, <a href="matlab:help mldivide">mldivide</a>, <a href="matlab:help mrdivide">mrdivide</a>.
+
+    <a href="matlab:doc rdivide">Reference page for rdivide</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('rdivide')">Other functions named rdivide</a>
+
+help minus
+ -   Minus. 
+    X - Y subtracts matrix Y from X. X and Y must have compatible sizes. In
+    the simplest cases, they can be the same size or one can be a scalar.
+    Two inputs have compatible sizes if, for every dimension, the dimension
+    sizes of the inputs are either the same or one of them is 1.
+ 
+    C = <strong>minus</strong>(A,B) is called for the syntax 'A - B' when A or B is an
+    object.
+
+    <a href="matlab:doc minus">Reference page for minus</a>
+    <a href="matlab:matlab.internal.language.introspective.overloads.displayOverloads('minus')">Other functions named minus</a>
+
+diary off

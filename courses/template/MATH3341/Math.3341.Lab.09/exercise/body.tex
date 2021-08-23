@@ -1,0 +1,60 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.09| in the Command Window, and type \verb|edit lab_09_script| in the Command Window to edit \verb|lab_09_script.m|.
+
+%---------------------------------------------
+\section{Ill-Conditioned Systems}
+%---------------------------------------------
+\begin{enumerate}[(a)]
+    \item Open the function file \verb|lab_09_function.m|.
+    \item Generate an $n \times n$ Hilbert matrix \verb`A`.
+    \item Create an $n \times 1$ all-one vector \verb`b`.
+    \item Now solve the ill-conditioned linear system $A x = b$ for $x$ by means of $x = A^{-1} b$:
+        \begin{itemize}
+            \item Use \verb|invhilb| to find $A^{-1}$, and store the exact solution $x$ to \verb|x_exact|.
+            \item Use \verb|\| to solve the linear system and store the approximate solution $\hat{x}$ to \verb|x_backslash|.
+            \item Use \verb|inv| to find $A^{-1}$, and store the approximate solution $\hat{x}$ to \verb|x_inv|.
+        \end{itemize}
+    \item Calculate the infinity norm of relative error of \verb|x_backslash| and \verb|x_inv| using the formula below, and store each relative error to \verb|error_backslash| and \verb|error_inv|, respectively.
+        $$
+        \mathrm{error}_{\mathrm{relative}} = \frac{\|\hat{x} - x\|_{\infty}}{\|x\|_{\infty}}.
+        $$
+    \item Calculate the 1-norm condition number of matrix \verb`A` using \verb|cond| and store the result to \verb`cond_A`.
+    \item Next, go to \verb|lab_09_script.m|, create a vector named \verb|n|: \verb|n = [9, 11, 13, 15]|. Using a for-loop to call \verb|lab_09_function| by passing each entry of \verb|n| as the input argument. What do you notice about the results?
+\end{enumerate}
+%---------------------------------------------
+\section{Finite Precision Arithmetic}
+%---------------------------------------------
+\begin{enumerate}[(a)]
+    \item Use either a for-loop or \verb|sum| to calculate
+            $$
+            s = \sum_{i=1}^{10} 0.1 = 0.1 + 0.1 + \cdots + 0.1.
+            $$
+            Then calculate the error \verb|error_1 = abs(s - 1)|.
+    \item Calculate
+            $$
+            b = 2 - 3 \left(\frac{4}{3} - 1\right).
+            $$
+            Then calculate the error \verb|error_2 = abs(b - 1)|.
+    \item Calculate each side of the following equation in the variables \verb|lhs| and \verb|rhs|:
+            $$
+            1 + a + a^2 + a^3 + a^4 + a^5 = \frac{1 - a^6}{1 - a},
+            $$
+            for the value $a = 0.3$. Then calculate the error \verb|error_3 = abs(lhs - rhs)|. Hint: you can use either a for-loop or \verb`polyval` to calculate \verb|lhs|.
+    \item Calculate the following and compare their output.
+            % \begin{verbatim}
+            \begin{lstlisting}{style=MATLAB}
+x = 1e16 + 1 - 1e16;
+y = 1e16 - 1e16 + 1;
+z = 1e16 - (1e16 - 1);
+            \end{lstlisting}
+            % \end{verbatim}
+    \item Calculate the following and compare their output.
+            % \begin{verbatim}
+            \begin{lstlisting}{style=MATLAB}
+u = 1 + 0.1 - 1;
+v = 1 - 1 + 0.1;
+w = 1 - (1 - 0.1);
+            \end{lstlisting}
+            % \end{verbatim}
+\end{enumerate}
+
+Once you finish, call \verb|diary('lab_09_output.txt')|, then run the script file \verb|lab_09_script.m|, and call \verb|diary off| to save the resulting output. Then you need to upload files \verb|lab_09_script.m|, \verb|lab_09_function.m|, and \verb|lab_09_output.txt| to Overleaf, and answer the corresponding questions in \verb|body.tex|.

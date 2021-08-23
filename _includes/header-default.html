@@ -1,0 +1,13 @@
+<header class="header-site" role="banner">
+    <div id="particles-js">
+        <div class="content">
+            <h1>
+                <span class="site-title">{{ site.username }}</span>
+                <span class="site-description">{{ site.user_title }}</span>
+            </h1>
+            {% include social.html %}
+        </div>
+        <a role="button" class="down" data-scroll href="#scroll"><svg class="icon icon-angle-down"><use xlink:href="#icon-angle-down"></use></svg></a>
+        {% include menu-search.html %}
+    </div>
+</header>

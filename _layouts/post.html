@@ -1,0 +1,22 @@
+---
+layout: compress
+---
+
+<!DOCTYPE html>
+<html lang="en-us">
+    {% include head.html %}
+    <body>
+        {% include header-post.html %}
+        <section class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+            <article role="article" id="scroll" class="post-content" itemprop="articleBody">
+                {{ content }}
+            </article>
+
+            {% include share.html %}
+            {% include author.html %}
+            {% include disqus.html %}
+            {% include footer.html %}
+        </section>
+    </body>
+</html>

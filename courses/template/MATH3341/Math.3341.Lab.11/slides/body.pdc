@@ -1,0 +1,140 @@
+% MATH 3341: Introduction to Scientific Computing Lab
+% Libao Jin
+% November 08, 2021
+
+# Lab 11: MATLAB Integration Routines \& Gauss Quadrature
+
+## Built-in Integration Routines
+
+### `polyint`: Indefinite Integral
+
+> * `I = polyint(p, c)`: indefinite integral of polynomial `p` with `c` being the constant.
+> * `I = polyint(p)`: same as `polyint(p, 0)`.
+> * Example: $\displaystyle \int 3 x^{2} + 2 x + 1 \, dx = x^{3} + x^{2} + x + C$.
+>   ```
+>   p = [3,2,1]
+>   I1 = polyint(p, 1)  % [1,1,1,1]
+>   I2 = polyint(p, 2)  % [1,1,1,2]
+>   I3 = polyint(p)     % [1,1,1,0]
+>   polyval(I1, 0)      % 1
+>   polyval(I2, 0)      % 2
+>   polyval(I3, 0)      % 0
+>   ```
+
+### `polyint`: Definite Integral
+
+> * Fundamental Theorem of Calculus (FTOC):
+>   $$
+>   \int_{a}^{b} p'(x) \, dx = p(x) \Big|_{a}^{b} = p(b) - p(a).
+>   $$
+> * Example: $\displaystyle \int_{0}^{2} 3 x^{2} + 2 x + 1 \, dx = x^{3} + x^{2} + x + C \Big|_{x=0}^{x=2} = 14$.
+>   ```
+>   p = [3,2,1]
+>   P = polyint(p)                     % [1,1,1,0]
+>   I = polyval(P, 2) - polyval(P, 0)  % 14
+>   ```
+
+### `trapz`: Trapezoidal numerical integration
+
+* `I = trapz(x, y)` computes the integral of `y` with respect to `x` using the trapezoidal method, `x` and `y` must be vectors of the same length.
+* Let $X = [x_1, x_2]$, $Y = [y_1, y_2]$, it is actually a trapezoid, where $y_{1}$ and $y_{2}$ are the lengths for the bases and $x_{2} - x_{1}$ is the height. Then
+  $$
+  I
+  = \frac{(x_{2} - x_{1}) (y_{1} + y_{2})}{2}.
+  $$
+* Let $X = [x_1, x_2, \ldots, x_n]$, $Y = [y_1, y_2, \ldots, y_n]$, then
+  $$
+  I
+  = \sum_{i = 1}^{n - 1} \frac{(x_{i + 1} - x_{i}) (y_{i + 1} + y_{i})}{2}
+  = \frac{1}{2} \sum_{i = 1}^{n - 1} (x_{i + 1} - x_{i}) (y_{i + 1} + y_{i}).
+  $$
+
+### `cumtrapz`: Cumulative trapezoidal numerical integration
+
+> * `I = cumtrapz(x, y)` computes the cumulative integral of `y` with respect to `x` using trapezoidal integration.
+> * Example:
+>   ```
+>   x = [1,2,3];
+>   y = [1,2,3];
+>   I1 = cumtrapz(x, y)  % [0, 1.5000, 4.0000]
+>   I2 = [trapz([1], [1]),
+>         trapz([1,2], [1,2]),
+>         trapz([1,2,3], [1,2,3])]  % [0, 1.5000, 4.0000]
+>   ```
+
+### Numerically evaluate integral - 1D
+
+> * `I = integral(f, a, b)` approximates the integral of function `f` from `a` to `b` using global adaptive quadrature and default error tolerances. `f` must be a function handle, `a` and `b` can be `-Inf` or `Inf`.
+> * Example: $\displaystyle \int_{0}^{2} 3 x^{2} + 2 x + 1 \, dx = x^{3} + x^{2} + x + C \Big|_{x=0}^{x=2} = 14$.
+>   ```
+>   f = @(x) 3 * x.^2 + 2 * x + 1;
+>   a = 0;
+>   b = 2;
+>   I = integral(f, a, b)           % 14.0000
+>   ```
+
+### Numerically evaluate integral - 2D
+
+> * `I = integral2(f,xmin,xmax,ymin,ymax)` approximates the integral of `f(x,y)` over the planar region `xmin <= x <= xmax` and `ymin(x) <= y <= ymax(x)`. `f` is a function handle, `ymin` and `ymax` may each be a scalar value or a function handle.
+> * Example: $\displaystyle \int_{0}^{2} \int_{0}^{x} 6 y + 2 \, dy \, dx = \int_{0}^{2} 3 x^{2} + 2 x \, dx = x^{3} + x^{2} + C \Big|_{x=0}^{x=2} = 12$.
+>   ```
+>   f = @(x, y) 6 * y + 2;
+>   xmin = 0;
+>   xmax = 2;
+>   ymin = 0;
+>   ymax = @(x) x;
+>   I = integral2(f, xmin, xmax, ymin, ymax);   % 12.0000
+>   ```
+
+### Numerically evaluate integral - 3D
+
+> * `I = integral3(f,xmin,xmax,ymin,ymax,zmin,zmax)` approximates the integral of `f(x,y,z)` over the region `xmin <= x <= xmax`, `ymin(x) <= y <= ymax(x)`, and `zmin(x,y) <= z <= zmax(x,y)`. `f` is a function handle, `ymin`, `ymax`, `zmin`, and `zmax` may each be a scalar value or a function handle.
+* Example: $\displaystyle \int_{0}^{2} \int_{0}^{x} \int_{-2y + 2}^{4y + 4} 1 \, dz \, dy \, dx = \int_{0}^{2} \int_{0}^{x} 6y + 2 \, dy \, dx = \int_{0}^{2} 3 x^{2} + 2 x \, dx = x^{3} + x^{2} + C \Big|_{x=0}^{x=2} = 12$.
+>   ```
+>   f = @(x, y, z) ones(size(z));
+>   xmin = 0; xmax = 2;
+>   ymin = 0; ymax = @(x) x;
+>   zmin = @(x,y) -2 * y + 4;
+>   zmax = @(x,y) 4 * y + 4;
+>   I = integral3(f, xmin, xmax, ymin, ymax, zmin, zmax);   % 12
+>   ```
+
+## Gauss-Legendre Quadrature
+
+### Gauss-Legendre Quadrature on $[-1, 1]$
+
+Integration of $f(x)$ on the interval $[-1, 1]$ using Gauss Quadrature is given by
+$$
+\int_{-1}^{1} f(x) \, dx \approx \sum_{i=1}^{n} w_i f(x_i),
+$$
+where $w_i$ and $x_i$ are chosen so the integration rule is exact for the largest class of polynomials. $f(x)$ is well-approximated by polynomial on $[-1, 1]$, the associated orthogonal polynomials are *Legendre polynomial*, denoted by $P_n(x)$. With the $n$-th polynomial normalized to give $P_n(1) = 1$, the $i$-th Gauss node, $x_i$, is the $i$-th root of $P_n$ and the weights are given by the formula (Abramowitz \& Stegun 1972, p. 887):
+$$
+w_i = \frac{2}{(1 - x_i^2) [P_{n}'(x_i)]^2}.
+$$
+
+### Gauss-Legendre Quadrature on $[a, b]$
+
+To approximate the integral on the general interval $[a, b]$, we need to use the change of variables as follows:
+\begin{align*}
+\frac{t - a}{b - a} = \frac{x - (-1)}{1 - (-1)} = \frac{x + 1}{2}
+   & \implies t = \frac{b - a}{2} x + \frac{b + a}{2}, -1 \leq x \leq 1
+\\ & \implies dt = \frac{b - a}{2} dx.
+\end{align*}
+So the Gauss Quadrature on a general interval $[a, b]$ is given by
+\begin{align*}
+\int_{a}^{b} f(t) \, dt
+   & = \int_{-1}^{1} f\left( \frac{b - a}{2} x + \frac{b + a}{2} \right) \frac{b - a}{2}\, dx
+\\ & \approx \sum_{i=1}^{n} w_i f\left( \frac{b - a}{2} x_i + \frac{b + a}{2} \right) \frac{b - a}{2}.
+\end{align*}
+
+### Gauss-Legendre Quadrature on $[a, b]$
+Let
+$$
+g(x) = f\left( \frac{b - a}{2} x + \frac{b + a}{2} \right) \frac{b - a}{2},
+$$
+then
+$$
+\int_{a}^{b} f(t) \, dt
+= \int_{-1}^{1} g(x) \, dx
+\approx \sum_{i=1}^{n} w_{i} g(x_{i}).
+$$

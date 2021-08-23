@@ -1,0 +1,137 @@
+%
+% body.tex
+%
+% Copyright © 2020 Libao Jin <jinlibao@outlook.com>
+% Distributed under terms of the MIT license.
+%
+\ifx\undefined\sol
+Submit online; make sure to sign the clause. All your work, including the signed page, should be together as one PDF file.
+\vspace{3em}
+\else
+{ \large
+\textbf{Honesty Clause: {\color{red}I hereby testify that all the work on this project is \underline{solely my own}. I have complied with the academic honesty guidelines as stated in the University regulations.}}
+
+% \special{pdf:ann width 3in height 1in
+%   <<
+%     /T (My Signature)
+%     /Subtype /Widget
+%     /FT /Sig
+%     /F 4
+%     /Q 1
+%     /MK << /BC [] >>
+%   >>
+% }
+
+\begin{Form}
+\TextField[width=21em,
+           name = print.name,
+           format = {
+               var f = this.getField('print.name');
+               % f.textFont = 'Verdana';
+               % f.strokeColor = ['T'];
+               % f.fillColor = ['T'];
+               f.userName = 'Print Name'
+               },
+           value = ,
+           charsize = 12pt]
+          {Name: }
+\end{Form}
+\begin{Form}
+\TextField[width=10em,
+           format   ={AFDate_FormatEx("mm/dd/yyyy");},
+           keystroke={AFDate_KeystrokeEx("mm.dd.yyyy");},
+           value = ,
+           charsize = 12pt]
+           {Date: }
+\end{Form}
+}
+\vspace{5em}
+\fi
+
+\textbf{Instruction}
+
+\begin{enumerate}[label={\arabic*.}]
+  \item Go to \url{https://www.overleaf.com} and sign in (required).
+  \item Click \emph{Menu} (up left corner), then \emph{Copy Project}.
+  \item Go to \verb|LaTeX/meta.tex| (the file \verb|meta.tex| under the folder \verb|LaTeX|) to change the section and your name, e.g.,
+    \begin{itemize}
+      % \item change title to \verb|\title{MATH 3340-01 Scientific Computing Homework 6}|
+      \item change author to \verb|\author{Albert Einstein \& Carl F. Gauss}|
+    \end{itemize}
+  \item You need to write function/script files, store results to output files. Here are suggested names for function files, script files, output files, and figure files:
+    \begin{table}[!hbtp]
+      \centering
+      % \caption{caption}
+      % \label{tab:label}
+      \begin{tabular}{cllll}
+        \toprule
+        Problem & Function File                              & Script File       & Output File         \\
+        \midrule
+        1       & \verb|simpson.m| \&  \verb|gaussSimpson.m| & \verb|final_p1.m| & \verb|final_p1.txt| \\
+        2       & \verb|steepestDescent.m|                   & \verb|final_p2.m| & \verb|final_p2.txt| \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+
+    Once finished, you need to upload these files to the folder \verb|src| on Overleaf. If you have different filenames, please update the filenames in \verb|\lstinputlisting{../src/your_script_name.m}| accordingly. You can code in the provided files in \href{https://libaoj.in/courses/2020s/MATH3340/Homework/9/final.zip}{final.zip}, and use the MATLAB script \verb|save_results.m| to generate the output files and store the graphs to \verb|.pdf| files automatically (the script filenames should be exactly same as listed above).
+  \item Recompile, and download the generated \verb|.pdf| file.
+  \item \textbf{\color{red}{Important}}: \underline{Enter your name and the date} \emph{before} you submit it on WyoCourses.
+\end{enumerate}
+
+\ifx\undefined\sol
+\newpage
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 1}%
+\label{sec:problem_1}
+Write a MATLAB code that uses the parameterization method to calculate the value of the area integral
+\begin{equation*}
+I = \int_{-1}^{1} \int_{x^{2}}^{4 - x^{2}} [x^{2} y + e^{-(x^{2} + y^{2})}] \, dy dx.
+\end{equation*}
+Your code should use Gauss quadrature in the $x$-direction (the outer integral) and Simpson's rule in the $y$-direction (the inner integral). For the Gauss integral, the code should allow you to choose up to six integration points (i.e., you should have the option $N =  1, N = 2, \ldots, N = 6$). Similarly, for the inner integral, you should be able to choose an arbitrary number of panels, $K$; the number of patches will then be $n = 2K$ with the evaluation points numbered $y_{0}, y_{1}, y_{2}, \ldots, y_{n}$ as in the notes. Run the code with $N = 2$ and $K = 2$, then with $N = 6$ and $K = 4$. Print the results you obtained for these two cases. Do not round off your results to four decimal places, the MATLAB default; instead, print all available decimals. Indicate clearly the values of $N$ and $K$ used for each calculation and submit all your code used for this problem. While this is your choice, it is probably best to organize it as a script calling the pertaining function (or functions), as usual.
+\begin{solution}
+  \quad
+  \begin{itemize}
+  \item Output file \verb|final_p1.txt|:
+    \lstinputlisting[style=Plain]{../src/final_p1.txt}
+  \item Function file \verb|simpson.m|:
+    \lstinputlisting[style=MATLAB]{../src/simpson.m}
+  \item Function file \verb|gaussSimpson.m|:
+    \lstinputlisting[style=MATLAB]{../src/gaussSimpson.m}
+  \item Script file \verb|final_p1.m|:
+    \lstinputlisting[style=MATLAB]{../src/final_p1.m}
+  \end{itemize}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 2}%
+\label{sec:problem_2}
+Solve the linear system of equations:
+\begin{equation*}
+  \begin{cases}
+    3x + y - z = 4 \\
+    x + 5y + 2z = -1 \\
+    -x + 2y + 5z = 1
+  \end{cases}
+\end{equation*}
+using the steepest descent method starting from the usual initial guess $\mathbf{x}^{0} = [0, 0, 0]^{T}$. For each iteration, print the iteration number $k$, the current approximation $\mathbf{x}^{k}$, and the norm of the residual at this current location. Start with $k = 0$ and produce a table with this information. Convergence should be declared when the norm of the residual is below $10^{-7}$. Submit all pieces of code that you used to solve the problem, together with the aforementioned results.
+\begin{solution}
+  \quad
+  \begin{itemize}
+  \item Output file \verb|final_p2.txt|:
+    \lstinputlisting[style=Plain]{../src/final_p2.txt}
+  \item Function file \verb|steepestDescent.m|:
+    \lstinputlisting[style=MATLAB]{../src/steepestDescent.m}
+  \item Function file \verb|steepestDescent2.m|:
+    \lstinputlisting[style=MATLAB]{../src/steepestDescent2.m}
+  \item Function file \verb|goldenSection.m|:
+    \lstinputlisting[style=MATLAB]{../src/goldenSection.m}
+  \item Script file \verb|final_p2.m|:
+    \lstinputlisting[style=MATLAB]{../src/final_p2.m}
+  \end{itemize}
+\end{solution}
+
