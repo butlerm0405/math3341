@@ -191,9 +191,9 @@ twitter_text:
 
 ## Course Description
 
-* [Syllabus]({{ site.baseurl }}/courses/2021f/MATH3341/Syllabus/MATH.3341.Syllabus.Fall.2021.Online.pdf){:target="_blank"}
+* [Syllabus]({{ site.url }}/courses/2021f/MATH3341/Syllabus/MATH.3341.Syllabus.Fall.2021.Online.pdf){:target="_blank"}
 * Instructor: Libao Jin
-<!--* [Schedule for Appointment]({{ site.baseurl }}/files/Schedule.2021f.pdf){:target="_blank"}-->
+<!--* [Schedule for Appointment]({{ site.url }}/files/Schedule.2021f.pdf){:target="_blank"}-->
 * Email: [ljin1@uwyo.edu](mailto:ljin1@uwyo.edu?subject=[MATH-3341])
 * Virtual Office: Discord (Invite link: [https://discord.gg/Zhm3WfKTJg](https://discord.gg/Zhm3WfKTJg))
 * Class:
@@ -229,7 +229,7 @@ def generate_instruction_md():
 3. "Menu" (up left corner) - "Copy Project".
 4. Go to "LaTeX/meta.tex" to change section you are in and your name, e.g., change "Math 3341-00" to "Math 3341-01".
 5. Once you finish the exercises, please upload output files "lab_01_output.txt" to the folder "src" on Overleaf. Double check the name are identical to the given above. Otherwise, Overleaf/LaTeX cannot compile the .tex file.
-6. [LaTeX.Mathematical.Symbols.pdf]({{ site.baseurl }}/files/LaTeX.Mathematical.Symbols.pdf){:target="_blank"}
+6. [LaTeX.Mathematical.Symbols.pdf]({{ site.url }}/files/LaTeX.Mathematical.Symbols.pdf){:target="_blank"}
 
 ### Submission Requirements
 
@@ -238,7 +238,7 @@ Submit the generated .pdf file on WyoCourses.
     return body
 
 def generate_lab_md(lab_info, current_lab=5):
-    base = '{{ site.baseurl }}'
+    base = '{{ site.url }}'
     target = '{:target="_blank"}'
     body = '''
 ## Labs
@@ -265,8 +265,8 @@ def generate_lab_md(lab_info, current_lab=5):
   [overleaf template]({:s}){:s}
   <div>
     <video width="720" height="450" poster="https://video.libaoj.in/math-3341-{:2s}/MATH.3341.Lab.{:2s}.png" preload="none" controls>
-      <source src="https://students.uwyo.edu/ljin1/MATH.3341.Lab.{:2s}.mp4" type="video/mp4">
       <source src="https://video.libaoj.in/math-3341-{:2s}/MATH.3341.Lab.{:2s}.mp4" type="video/mp4">
+      <source src="https://students.uwyo.edu/ljin1/MATH.3341.Lab.{:2s}.mp4" type="video/mp4">
       <p>This browser does not support the video element, please change a browser.</p>
     </video>
   </div>
@@ -275,8 +275,8 @@ def generate_lab_md(lab_info, current_lab=5):
                      base, semester_8, lab_no, target,
                      latex_template, target,
                      semester_3, lab_no,
-                     lab_no,
-                     semester_3, lab_no)
+                     semester_3, lab_no,
+                     lab_no)
         else:
             body += '\n- zip, slides, exercise, overleaf template\n'
 
@@ -284,7 +284,7 @@ def generate_lab_md(lab_info, current_lab=5):
 
 def generate_hw_md(hw_info, current_hw=2):
     body = '## MATH 3340 Homework Templates\n'
-    base = '{{ site.baseurl }}'
+    base = '{{ site.url }}'
     prefix = '{:s}/courses/{:s}/MATH3340'.format(base, format_semester(hw_info['date'], 8))
     target = '{:target="_blank"}'
     for i in range(1, 10):
