@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 09: Ill-conditioned Matrices and Finite Precision Arithmetic
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 10/18/2021
 
 clc; clear; warning off;

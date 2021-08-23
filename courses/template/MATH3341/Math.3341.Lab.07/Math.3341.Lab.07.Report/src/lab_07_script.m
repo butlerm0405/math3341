@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 07: Debugging & Good Coding Practices
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 10/04/2021
 
 clc; clear; close all;

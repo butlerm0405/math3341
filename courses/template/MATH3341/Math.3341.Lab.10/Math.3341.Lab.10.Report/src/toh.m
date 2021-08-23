@@ -13,7 +13,7 @@ function toh(N)
 % toh(N)
 %
 % -------------------------------------------------------------------
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 2013.06.27 - 2013.07.04
 % Copyright (c) 2013 JinLibao
 % All rights reserved.
