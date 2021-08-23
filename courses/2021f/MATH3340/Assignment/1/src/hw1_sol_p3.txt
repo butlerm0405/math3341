@@ -1,0 +1,17 @@
+
+- Problem 3 -
+
+- Problem 3 (a) -
+res =
+  1×20 <a href="matlab:helpPopup logical" style="font-weight:bold">logical</a> array
+   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+
+- Problem 3 (b) -
+ans =
+   -1.0000         0    1.0000    0.8415    0.9093
+
+- Problem 3 (c) -
+
+- Problem 3 (d) -
+ans =
+     2     3     5     7    11    13    17    19    23    29

@@ -1,0 +1,1 @@
+f(x) = x^2 + 4*x + 3 reaches the minimum -1.00000000 at x = -2.00000003. (REPLACE THIS WITH YOUR OWN OUTPUT)

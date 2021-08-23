@@ -1,0 +1,5 @@
+(REPLACE THIS WITH YOUR OWN OUTPUT)
+f(x) = |3 * x^2 - 5| + |4 * x - 3| on [-2, 2]
+              method       x_min    f(x_min)
+Successive Parabolic  1.29099445  2.16397780
+      Golden Section  1.29099444  2.16397781

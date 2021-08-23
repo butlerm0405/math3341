@@ -1,0 +1,4 @@
+f(x) = |x^2 - 2| + |2 * x + 3| on [-4, 0]
+              method       x_min    f(x_min)
+Successive Parabolic -1.41421356  0.17157288
+      Golden Section -1.41421357  0.17157288

@@ -1,0 +1,212 @@
+%
+% body.tex
+%
+% Copyright © 2020 Libao Jin <jinlibao@outlook.com>
+% Distributed under terms of the MIT license.
+%
+Please note that the deadline will be enforced as per the first homework. Remember that you are allowed to work in teams of two on this assignment. You are encouraged to prepare your work in \LaTeX{}; a template will be provided to help you put it all together. In case you work in a team, both members of a team should submit, through WyoCourses, the PDF file containing their work and showing both their names. \\[20pt]
+\textbf{Instruction}
+\begin{enumerate}[label={\arabic*.}]
+  \item Go to \url{https://www.overleaf.com} and sign in (required).
+  \item Open \href{https://www.overleaf.com/read/fpmxtrsdnsrg}{template}, click \emph{Menu} (up left corner), then \emph{Copy Project}.
+  \item Go to \verb|LaTeX/meta.tex| (the file \verb|meta.tex| under the folder \verb|LaTeX|) to change the section and your name, e.g.,
+    \begin{itemize}
+      \item change title to \verb|\title{MATH 3340-01 Scientific Computing Homework 2}|
+      \item change author to \verb|\author{Albert Einstein \& Carl F. Gauss}|
+    \end{itemize}
+  \item For Problem 1, 2, 3, 4, you need to write function/script files and store results to output files. Here are suggested names for function files, script files, and output files:
+    \begin{table}[!hbtp]
+      \centering
+      % \caption{caption}
+      % \label{tab:label}
+      \begin{tabular}{llll}
+        \toprule
+        Problem & Function File               & Script File       & Output File         \\
+        \midrule
+        1       & \verb|bisection.m|          & \verb|hw2_p1.m|   & \verb|hw2_p1.txt|   \\
+        2       & \verb|newton.m|             & \verb|hw2_p2.m|   & \verb|hw2_p2.txt|   \\
+        3 (a)   & \verb|bisectionImproved.m|  & \verb|hw2_p3_a.m| & \verb|hw2_p3_a.txt| \\
+        3 (b)   & \verb|newton.m|             & \verb|hw2_p3_b.m| & \verb|hw2_p3_b.txt| \\
+        4       & \verb|bisectionRecursive.m| & \verb|hw2_p4.m|   & \verb|hw2_p4.txt|   \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+
+    Once finished, you need to upload these files to the folder \verb|src| on Overleaf. If you have different filenames, please update the filenames in \verb|\lstinputlisting{../src/your_script_name.m}| accordingly. You can use the MATLAB script \verb|src/save_output.m| to generate the output files automatically (the script filenames should be exactly same as listed above). You can code in the provided files in \href{https://libaoj.in/courses/2020f/MATH3340/Homework/2/hw2.zip}{hw2.zip}. You can type \verb`save_output` in the Command Window to call scripts above and save the output to corresponding files (Make sure the \verb|save_output.m| is in the current working directory).
+  \item For Problem 3(a), 3(b), 5, you can either print the recompiled PDF out and write your solution/explanation there or directly type the answer in \verb|body.tex| on Overleaf and print it out at the end.
+  \item Recompile, download, and print out the generated PDF.
+  \item You may find \href{https://libaoj.in/files/LaTeX.Mathematical.Symbols.pdf}{\LaTeX{}.Mathematical.Symbols.pdf} and the second part of \href{https://libaoj.in/courses/2020f/MATH3341/slides/Math.3341.Lab.01.Slides.pdf}{Lab 01 Slides} and \href{https://libaoj.in/courses/2020f/MATH3341/slides/Math.3341.Lab.02.Slides.pdf}{Lab 02 Slides} helpful.
+\end{enumerate}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 1
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 1}%
+\label{sec:problem_1}
+Write your own MATLAB function that uses the bisection method to find the root of $f(x)$. The function header for the bisection method could read:
+\begin{lstlisting}[style=MATLAB,numbers=none]
+function [r, iters] = bisection(f, xL, xR)
+\end{lstlisting}
+where the inputs are:
+\begin{lstlisting}[style=Plain,numbers=none]
+f  = the function f(x) for which you want to find the root
+xL = left limit of the interval
+xR = right limit of the interval
+\end{lstlisting}
+and the outputs are:
+\begin{lstlisting}[style=Plain,numbers=none]
+r     = the root
+iters = number of iterations performed
+\end{lstlisting}
+This is a \emph{minimal} list of inputs and outputs required for your function. Additional inputs or outputs may be necessary and they are left to your discretion. Use this code to find the root of the piecewise function:
+\begin{equation*}
+  f(x) = \begin{cases}
+    x^{3} + 3x + 1 & \text{if~} x \leq 0, \\
+    1 + \sin(x)    & \text{if~} x > 0,
+  \end{cases}
+\end{equation*}
+on the interval $x_{L} = -2$, $x_{R} = 0.1$. For this problem submit
+\begin{itemize}
+  \item Your function file defining the bisection method
+  \item The script file that calls this function
+  \item A text file that contains the following output:
+    \begin{itemize}
+      \item the value of the root $x^{*}$
+      \item the value of $f(x^{*})$
+      \item the number of iterations performed
+    \end{itemize}
+    The output must clearly identify each one of these results.
+\end{itemize}
+\textbf{Note:} Your script file should define the inputs of your function, call your function, and contain any additional formatting needed for pretty-printing the output.
+
+\begin{solution}
+  \quad
+  \begin{itemize}
+    \item
+      Function file \verb|bisection.m|
+      \lstinputlisting[style=MATLAB]{../src/bisection.m}
+    \item
+      Script file \verb|hw2_p1.m|
+      \lstinputlisting[style=MATLAB]{../src/hw2_p1.m}
+    \item
+      Output file \verb|hw2_p1.txt|
+      \lstinputlisting[style=Plain]{../src/hw2_p1.txt}
+  \end{itemize}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 2
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 2}%
+\label{sec:problem_2}
+Using the code in Problem 1 as a template (thus possibly with similar input and output arguments), write a different MATLAB function which now implements Newton's Method to find the root of a function. Use this new code to find the root of
+\begin{equation*}
+  f(x) = x^{3} + 3x + 1
+\end{equation*}
+with an initial guess $x_{0} = -2$ and an accuracy $\alpha = 10^{-5}$. For this problem submit the equivalent files similar to those for Problem 1: a function file, script file, and output file. Your output must also meet the same requirements: it must list the value of the root, function value at the root, and number of iterations performed.
+\begin{solution}
+  \quad
+  \begin{itemize}
+    \item
+      Function file \verb|newton.m|
+      \lstinputlisting[style=MATLAB]{../src/newton.m}
+    \item
+      Script file \verb|hw2_p2.m|
+      \lstinputlisting[style=MATLAB]{../src/hw2_p2.m}
+    \item
+      Output file \verb|hw2_p2.txt|
+      \lstinputlisting[style=Plain]{../src/hw2_p2.txt}
+  \end{itemize}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 3
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 3}%
+\label{sec:problem_3}
+Now use both codes you developed above (Newton and bisection) to find the roots of the equation:
+\begin{equation*}
+  f(x) = \frac{1}{2} + \frac{x^{2}}{4} - x \sin(x) - \frac{\cos(2x)}{2}.
+\end{equation*}
+\begin{enumerate}
+  \item \textbf{Bisection method:} Use the initial bracket $x_{L} = 0$, $x_{R} = \pi$. Do you encounter any problems? Is there a way your code can be improved to behave appropriately for this problem? Explain any changes you choose to make.
+  \item \textbf{Newton's method:} Use all the following initial guesses:
+    \begin{itemize}
+      \item $x_{0} = \pi / 2$,
+      \item $x_{0} = 5 \pi$,
+      \item $x_{0} = 10 \pi$.
+    \end{itemize}
+    Use an accuracy of $\alpha = 10^{-5}$, and a maximum number of 20000 iterations for all computations. Try to explain the different behavior for the three starting values in Newton's method case.
+\end{enumerate}
+For each part, again submit the same kind of files indicated in Problem 1: a function file, script file, and output file. Your output must again align to the same requirements.
+\begin{solution}
+  \quad
+  \begin{enumerate}
+    \item
+      \begin{itemize}
+        \item Problem encountered:
+          \\[25pt]  % DELETE THIS LINE IF YOU TYPE THE ANSWER
+        \item Explanation for changes made:
+          \\[25pt]  % DELETE THIS LINE IF YOU TYPE THE ANSWER
+        \item
+          Function file \verb|bisectionImproved.m|
+          \lstinputlisting[style=MATLAB]{../src/bisectionImproved.m}
+        \item
+          Script file \verb|hw2_p3_a.m|
+          \lstinputlisting[style=MATLAB]{../src/hw2_p3_a.m}
+        \item
+          Output file \verb|hw2_p3_a.txt|
+          \lstinputlisting[style=Plain]{../src/hw2_p3_a.txt}
+      \end{itemize}
+    \item
+      \begin{itemize}
+        \item Explanation for different behavior for the three initial guesses:
+          \\[25pt]  % DELETE THIS LINE IF YOU TYPE THE ANSWER
+        \item
+          Function file \verb|newton.m|
+          \lstinputlisting[style=MATLAB]{../src/newton.m}
+        \item
+          Script file \verb|hw2_p3_b.m|
+          \lstinputlisting[style=MATLAB]{../src/hw2_p3_b.m}
+        \item
+          Output file \verb|hw2_p3_b.txt|
+          \lstinputlisting[style=Plain]{../src/hw2_p3_b.txt}
+      \end{itemize}
+  \end{enumerate}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 4
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 4}%
+\label{sec:problem_4}
+Write a recursive MATLAB function that implements the bisection method to find the root of a given function $f(x)$. The function header for the bisection method should be similar to the one in the first problem, using the same inputs as a minimum and producing the same outputs. You may find it necessary to use some extra variable or variables as input arguments. Run this code on the function:
+\begin{equation*}
+  f(x) = x^{2} - 7
+\end{equation*}
+with the initial bounds $x_{L} = -1$, $x_{R} = 9$. Again submit the type of files corresponding to those in Problem 1.
+\begin{solution}
+  \quad
+  \begin{itemize}
+    \item
+      Function file \verb|bisectionRecursive.m|
+      \lstinputlisting[style=MATLAB]{../src/bisectionRecursive.m}
+    \item
+      Script file \verb|hw2_p4.m|
+      \lstinputlisting[style=MATLAB]{../src/hw2_p4.m}
+    \item
+      Output file \verb|hw2_p4.txt|
+      \lstinputlisting[style=Plain]{../src/hw2_p4.txt}
+  \end{itemize}
+\end{solution}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem 5
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Problem 5}%
+\label{sec:problem_5}
+This is a problem to be solved only analytically. Think about Newton's method and its disadvantage: it requires the knowledge for the derivative of the function. Develop a method that circumvents this problem by using an approximation to the derivative obtained using a secant to the graph of the function: suppose you start with two points $x_{0}$ and $x_{1}$. Your approximation to the root, $x_{2}$, will be the intersection of the secant through $(x_{1}, f(x_{1}))$ and $(x_{0}, f(x_{0}))$ with the $x$-axis. Express $x_{2}$ as a function of $x_{0}$ and $x_{1}$, then show how this can be generalized from $\{x_{0}, x_{1}, x_{2}\}$ to $\{x_{k - 1}, x_{k}, x_{k + 1}\}$.
+\begin{solution}
+  \quad \vfill  % DELETE THIS LINE IF YOU TYPE THE ANSWER
+\end{solution}

@@ -1,0 +1,2 @@
+    n            a            b  Trapezoidal      Simpson        Exact
+    5     0.000000     6.283185    38.757846    51.677128    39.770906
