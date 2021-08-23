@@ -1,0 +1,258 @@
+\documentclass[11pt,oneside,letter,twoside,usename,dvipsnames,svgnames,table]{article}
+\usepackage{
+    afterpage,amsfonts,amsmath,amssymb,amsthm,appendix,array,booktabs,breqn,
+    caption,color,enumerate,fancyhdr,float,fontspec,geometry,graphicx,grffile,
+    hyperref,hyphenat,ifthen,imakeidx,indentfirst,lastpage,lipsum,listings,
+    longtable,makeidx,mathtools,multicol,subcaption,tikz,tikzscale,titlesec,
+    titling,verbatim,xcolor,xltxtra,xunicode
+}
+\captionsetup{width=0.95\textwidth}
+\usepackage{fontspec}
+\setmonofont[Scale=MatchLowercase]{Monaco.otf}
+
+% ------------------- algorithm2e -----------------
+\usepackage[ruled]{algorithm2e}
+% ------------------- caption ---------------------
+\captionsetup{width=0.95\textwidth}
+% ------------------- geometry --------------------
+\geometry{
+    margin = 1in
+}
+
+\input{meta.tex}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{remark}{Remark}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{proposition}{Proposition}[section]
+\numberwithin{equation}{section}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+\lstdefinestyle{MATLAB}{
+    basicstyle={\ttfamily\small},
+    breaklines=true,
+    keywordstyle=\color{blue},
+    otherkeywords={},
+    alsoletter={...},
+    morekeywords={break,case,catch,continue,elseif,else,end,for,function,global,
+        if,otherwise,persistent,return,switch,try,while,methods,properties,
+        events,classdef,...},
+    comment=[l]\%,                              % comments
+    morecomment=[l]...,                         % comments
+    morecomment=[s]{\%\{}{\%\}},                % block comments
+    morestring=[m]
+    identifierstyle=\color{darkgray},
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numberstyle={\footnotesize \color{black}},
+    numbersep=9pt,
+    numbers=left,
+    emph={int,char,double,float,unsigned,auto},
+    emphstyle={\color{darkgray}},
+    frame=single,
+    backgroundcolor=\color{white},
+    tabsize=4,
+    language=MATLAB,
+}
+
+\lstdefinestyle{TeX}{
+    basicstyle={\ttfamily\small},
+    breaklines=true,
+    morekeywords={},
+    keywordstyle=\color{DodgerBlue},
+    morekeywords={},
+    identifierstyle=\color{Teal},
+    stringstyle=\color{LightCoral},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numberstyle={\normalsize},
+    numbersep=9pt,
+    numbers=left,
+    emph={},
+    emphstyle={\color{black} \bfseries},
+    frame=single,
+    backgroundcolor=\color{White},
+    tabsize=4,
+    language=[LaTeX]{TeX},
+}
+
+\lstdefinestyle{C}{
+    basicstyle={\ttfamily\small},
+    breaklines=true,
+    morekeywords={},
+    keywordstyle=\color{DodgerBlue},
+    morekeywords={},
+    identifierstyle=\color{Teal},
+    stringstyle=\color{LightCoral},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numberstyle={\normalsize},
+    numbersep=9pt,
+    numbers=left,
+    emph={},
+    emphstyle={\color{black} \bfseries},
+    frame=single,
+    backgroundcolor=\color{White},
+    tabsize=4,
+    language=C,
+}
+
+\lstdefinestyle{Plain}{
+    basicstyle={\ttfamily},
+    breaklines=true,
+    backgroundcolor=\color{White},
+    commentstyle=\color{gray},
+    emph={},
+    emphstyle={\color{black} \bfseries},
+    frame=single,
+    identifierstyle=\color{Black},
+    keywordstyle=\color{Black},
+    language=Python,
+    morekeywords={},
+    numberstyle={\normalsize},
+    numbersep=9pt,
+    numbers=left,
+    stringstyle=\color{Black},
+    showstringspaces=false,
+    tabsize=4,
+}
+
+\lstdefinestyle{Python}{
+    basicstyle={\ttfamily\small},
+    breaklines=true,
+    backgroundcolor=\color{White},
+    commentstyle=\color{gray},
+    emph={},
+    emphstyle={\color{black} \bfseries},
+    frame=single,
+    identifierstyle=\color{Teal},
+    keywordstyle=\color{DodgerBlue},
+    language=Python,
+    morekeywords={as, __init__, with, self,},
+    numberstyle={\normalsize},
+    numbersep=9pt,
+    numbers=left,
+    stringstyle=\color{LightCoral},
+    showstringspaces=false,
+    tabsize=4,
+}
+
+\lstset{
+    basicstyle={\ttfamily\footnotesize},
+    breaklines=true,
+    keywordstyle=\color{blue},
+    otherkeywords={},
+    morekeywords={},
+    identifierstyle=\color{darkgray},
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    showstringspaces=false,
+    numberstyle={\footnotesize \color{black}},
+    numbersep=9pt,
+    numbers=left,
+    emph={int,char,double,float,unsigned,auto},
+    emphstyle={\color{Cerulean}},
+    frame=single,
+    backgroundcolor=\color{white},
+    tabsize=4,
+    language={},
+}
+
+\def\Xint#1{\mathchoice
+{\XXint\displaystyle\textstyle{#1}}%
+{\XXint\textstyle\scriptstyle{#1}}%
+{\XXint\scriptstyle\scriptscriptstyle{#1}}%
+{\XXint\scriptscriptstyle\scriptscriptstyle{#1}}%
+\!\int}
+\def\XXint#1#2#3{{\setbox0=\hbox{$#1{#2#3}{\int}$ }
+\vcenter{\hbox{$#2#3$ }}\kern-.6\wd0}}
+\def\ddashint{\Xint=}
+\def\dashint{\Xint-}
+
+\providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setlength{\parindent}{0pt}
+
+\newenvironment{solution}
+{\begin{proof}[\textsc{Solution}]}
+  {\end{proof}}
+
+\makeatletter
+\let\Author\@author
+\let\Title\@title
+\makeatother
+
+\hypersetup{
+    %--------------- pdfinfo ------------------
+    pdftitle  = {\Title},
+    pdfauthor = {\Author},
+    pdfsubject= {\Title},
+    pdfkeywords={},
+    %--------------- links --------------------
+    colorlinks= {true},
+    linkcolor = {red},
+    citecolor = {cyan},
+    bookmarksnumbered = {true},
+    %--------------- pagemode -----------------
+    pdffitwindow={true},
+    pdftoolbar= {false},
+    pdfmenubar= {false},
+    pdfpagelayout = {OneColumn},
+    pdfstartview = {FitH},
+    pdfpagemode = {UseNone},
+    %pdfnonfullscreenpagemode = {UseNone}
+}
+
+\fancypagestyle{mystyle}{
+    \fancyhf{}
+    \fancyhead[LO,RE]{\footnotesize \Author}
+    \fancyhead[CO,CE]{\footnotesize \Title}
+    \fancyhead[RO,LE]{\footnotesize\thepage\ of \pageref*{LastPage}}
+%   \fancyfoot[RO,LE]{\author}
+%   \fancyfoot[CO,CE]{\footnotesize\thepage}
+%   \fancyfoot[LO,RE]{\date}
+    \pagenumbering{arabic}
+}
+\pagestyle{mystyle}
+\allowdisplaybreaks
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\bfseries\Large \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+        \\[10pt]
+        \@date
+      \end{tabular}\par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+% ------------------- titlesec --------------------
+\titleformat{\section}{\scshape\Large}{\thesection}{1em}{}
+\titleformat{\subsection}{\scshape\large}{\thesubsection}{1em}{}
+\titleformat{\subsection}{\scshape\normalsize}{\thesubsection}{1em}{}
+
+\begin{document}
+\maketitle
+\input{body.tex}
+\end{document}

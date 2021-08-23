@@ -1,0 +1,126 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.03| in the Command Window, and type \verb|edit lab_03_script| in the Command Window to edit \verb|lab_03_script.m|.
+
+
+%---------------------------------------------
+\section{Anonymous Functions}
+%---------------------------------------------
+\begin{enumerate}[(a)]
+  \item Define an anonymous function \verb|rowSums| which calculates the row sums of a matrix of any dimension. Then define \verb|magicMat5| and \verb|magicMat7| to be a $5 \times 5$ and a $7 \times 7$ magic square matrix, respectively. Compute \verb|magicMat5RowSums| by calling \verb|rowSums(magicMat5)|, and compute \verb|magicMat7RowSums| by calling \verb|rowSums(magicMat7)|.
+  \item Define anonymous functions \verb|f| and \verb|g|, where $f(x) = x \ln(x)$ and $g(y) = y e^{y}$. Create another anonymous function \verb|h| by composing \verb|f| and \verb|g|, i.e., $h(z) = g(f(z))$. Use \verb|linspace| to define a \emph{column vector} \verb|z|, of which the range is from $1$ to $5$ with $11$ entries. Evaluate function \verb|h| at \verb|z|, and assign the result to \verb|hz|.
+  \item Define an anonymous function \verb|matProd| for calculating the product of two matrices, that is, $matProd(A, B) = ABB^{T} A^{T}$. Define \verb|A| and \verb|B| using \verb|colon|, \verb|reshape| and \verb|transpose| as follows,
+    \begin{equation*}
+      A = \begin{bmatrix}
+        1 & 2 & 3 \\
+        4 & 5 & 6
+      \end{bmatrix},
+      B = \begin{bmatrix}
+        7 & 10 & 13 & 16 \\
+        8 & 11 & 14 & 17 \\
+        9 & 12 & 15 & 18
+      \end{bmatrix}.
+    \end{equation*}
+    Store the result of \verb|matProd(A, B)| to \verb|matProdAB|.
+  \item Define an anonymous function \verb|p|, where
+    \begin{equation*}
+      p(x) = \begin{cases}
+        x^3 & \text{if $x < -1$}, \\
+        x & \text{if $-1 \leq x \leq 1$}, \\
+        x^2 & \text{if $x > 1$}.
+      \end{cases}
+    \end{equation*}
+    Next visualize $p(x)$ using \verb|fplot| on [-2, 2] (Use \verb|help fplot| for more details about \verb|fplot|). Then run \verb|print(gcf, '-dpng', 'lab_03_1d.png')| to save the plot to a \verb|.png| file.
+\end{enumerate}
+
+%---------------------------------------------
+\section{Function Files}
+%---------------------------------------------
+\begin{minipage}[t]{0.50\linewidth}
+\begin{algorithm}[H]
+    \label{alg:recursive}
+    \caption{Recursive Factorial}
+    \SetCommentSty{\color{gray}}
+    \SetAlgoLined
+    \LinesNumbered
+    \SetKwProg{Fn}{Function}{:}{end}
+    \Fn{$\operatorname{factorialRecursive}(n)$}{
+        \KwIn{$n$: an nonnegative integer}
+        \KwOut{$f$: $n!$}
+        \uIf{$n = 0$} {
+            $f \gets 1$\;
+        }
+        \Else {
+            $f \gets n \times \operatorname{factorialRecursive}(n - 1)$\;
+        }
+    }
+\end{algorithm}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\begin{algorithm}[H]
+    \label{alg:iterative}
+    \caption{Iterative Factorial}
+    \SetCommentSty{\color{gray}}
+    \SetAlgoLined
+    \LinesNumbered
+    \SetKwProg{Fn}{Function}{:}{end}
+    \Fn{$\operatorname{factorialIterative}(n)$}{
+        \KwIn{$n$: an nonnegative integer}
+        \KwOut{$f$: $n!$}
+        $f \gets 1$\;
+        \For{$i \gets 1$ \KwTo $n$} {
+            $f \gets f \times i$;
+        }
+    }
+\end{algorithm}
+\end{minipage}
+
+\begin{enumerate}[(a)]
+    \item Create a function file \verb|factorialRecursive.m| to implement the pseudocode in Algorithm \ref{alg:recursive}.
+    \item Create a function file \verb|factorialIterative.m| to implement the pseudocode in Algorithm \ref{alg:iterative}.
+    \item In the script file \verb|lab_03_script.m|, use a for-loop to calculate $n!$ where $n = 1, \ldots, 20$ by calling the above two function files as follows
+        \begin{lstlisting}[style=MATLAB]
+fprintf('%2s %20s %20s\n', 'n', 'factorialRecursive', 'factorialIterative');
+for n = 1:20
+    f1 = factorialRecursive(n);
+    f2 = factorialIterative(n);
+    fprintf('%2d %20d %20d\n', n, f1, f2);
+end
+        \end{lstlisting}
+\end{enumerate}
+
+%---------------------------------------------
+\section{Application: Real-Life Problems}
+%---------------------------------------------
+
+\begin{enumerate}[(a)]
+  \item Create a function file \verb|dayOfWeek.m| to calculate day of week of a specific date. It is known that January 1st, 1970 is Thursday. In the script file \verb|lab_03_script|, calculate the day of week for 01-07-1970, 03-07-1970, 03-08-1971, 08-08-1988, 09-09-1999, 02-10-2021. Here is the suggested syntax for the function: \verb|d = dayOfWeek(year, month, day)|. For example, calling \verb|dayOfWeek(1970, 1, 1)| should return \verb|'Thursday'|. You may use the provided function file \verb|isLeapYear.m|, use \verb|help isLeapYear| for more information. You should use both \verb|if| and \verb|swtich| statements.
+
+    Hint: Given that 01-01-1970 is a Thursday, your job is to determine the day of week of a specific date. You can compute the total number of days elapsed since 01-01-1970, disregard the number of weeks past between the dates and add the remainder to the day of week of 01-01-1970 to obtain the day of week of the given date. For example,
+    \begin{itemize}
+      \item 01-02-1970: 1 day elapsed since 01-01-1970, Thursday + 1 day = Friday. Therefore, 01-02-1970 is a Friday;
+      \item 01-08-1970: 7 days elapsed since 01-01-1970, Thursday + 7 days = Thursday + 1 week = Thursday. Therefore, 01-08-1970 is a Thursday;
+      \item 03-02-1970: 31 (number of days in Jan) + 28 (number of days in Feb) + 2 (number of days past in March) $- 1 = 60$ days elapsed since 01-01-1970, Thursday + 60 days = Thursday + 8 week + 4 days = Thursday + 4 days = Sunday + 1 day = Monday. Therefore, 03-02-1970 is a Monday;
+    \end{itemize}
+  \item Shop A is selling a beverage which costs \$2 per bottle and there are rules for promotional sales for the beverage:
+    \begin{itemize}
+      \item You can exchange 4 caps for 1 full bottle of the same beverage for free;
+      \item You can exchange 2 empty bottles (without caps) for 1 full bottle of the same beverage for free.
+    \end{itemize}
+    You have $\$10$ in your pocket. What is the maximum number of bottles of the beverage you can get? Solve this question by writing a function \verb|maxBeverageBottles|.
+    \begin{itemize}
+      \item The function can be called as below:
+
+        \verb|maxBeverageBottles(money, pricePerNewBottle, capsPerNewBottle, emptyBottlesPerNewBottle)|
+        which returns the maximum number of bottles you can get with \verb|money|.
+      \item \verb|money| is the amount of money available;
+      \item \verb|pricePerNewBottle| is the unit price for buying a new bottle;
+      \item \verb|capsPerNewBottle| is the number of caps needed for exchanging 1 free bottle;
+      \item \verb|emptyBottlesPerNewBottle| is the number of empty bottles needed for exchanging 1 free bottle.
+    \end{itemize}
+    Then in the script file, store the result of calling \verb|maxBeverageBottles(10, 2, 4, 2)| to \verb|maxBottles1|. What if you have $\$1000$ in your pocket, the beverage still costs $\$2$/bottle, but $5$ caps/bottle or $3$ empty bottles/bottle for exchanging a new free bottle, how many bottles can you get? Store the result to \verb|maxBottle2|. You may find \verb|floor| and \verb|mod| useful.
+
+    Hint: For each new bottle you get, you have a new pair of cap and empty bottle (after consumed). So you can get new bottles until no enough money/caps/empty bottles.
+\end{enumerate}
+
+Before proceeding, make sure you suppress the output in the function files and do \textsc{not} suppress the output in the script file. In the Command Window, enter the command \verb`diary('lab_03_output.txt')`, run the script file \verb|lab_03_script.m|, then type \verb`diary off` to store the output to \verb`lab_03_output.txt`. Then upload the script file \verb|lab_03_script.m|, plot file \verb|lab_03_1d.png|, output file \verb|lab_03_output.txt|, and function files \verb|factorialIterative.m|, \verb|factorialRecursive.m|, \verb|dayOfWeek.m|, \verb|maxBeverageBottles.m| to the folder \verb|src| on Overleaf.
+

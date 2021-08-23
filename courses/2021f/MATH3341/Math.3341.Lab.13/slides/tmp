@@ -1,0 +1,77 @@
+
+* When $n = 100$.
+  \begin{figure}[!hbtp]
+    \centering
+    \begin{tikzpicture}
+      \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+      \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+      \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+      \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+      \foreach \i in {1,2,...,100}{%
+          \typeout{Point \i}%
+          \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+          \typeout{X \x}%
+          \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+          \typeout{Y \y}%
+          \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+          \typeout{im Kreis?: \k}%
+          \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+          \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+      }
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:mi100}
+  \end{figure}
+
+
+### 2-D Monte Carlo Integration Example
+
+* When $n = 1000$.
+  \begin{figure}[!hbtp]
+    \centering
+    \begin{tikzpicture}
+      \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+      \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+      \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+      \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+      \foreach \i in {1,2,...,1000}{%
+          \typeout{Point \i}%
+          \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+          \typeout{X \x}%
+          \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+          \typeout{Y \y}%
+          \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+          \typeout{im Kreis?: \k}%
+          \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+          \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+      }
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:mi1000}
+  \end{figure}
+
+### 2-D Monte Carlo Integration Example
+
+* When $n = 5000$.
+  \begin{figure}[!hbtp]
+    \centering
+    \begin{tikzpicture}
+      \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+      \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+      \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+      \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+      \foreach \i in {1,2,...,5000}{%
+          \typeout{Point \i}%
+          \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+          \typeout{X \x}%
+          \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+          \typeout{Y \y}%
+          \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+          \typeout{im Kreis?: \k}%
+          \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+          \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+      }
+    \end{tikzpicture}
+    \caption{}
+    \label{fig:mi5000}
+  \end{figure}

@@ -1,0 +1,43 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.12| in the Command Window, and type \verb|edit lab_12_script| in the Command Window to edit \verb|lab_12_script.m|.
+
+\begin{enumerate}[1.]
+    \item Download the file \verb`Math.3341.Lab.12.zip`, un-zip it.
+    \item The algorithm for Romberg integration is given below (see Algorithm \ref{alg:romberg}). Please implement the algorithm in MATLAB in the provided function file \verb|lab_12_romberg.m|.
+        \quad \\
+        \begin{minipage}{\linewidth}
+        \begin{algorithm}[H]
+            \caption{Romberg integration: approximates $I = \int_{a}^{b} f(x) \, dx$ using $n$ intervals.}
+            \label{alg:romberg}
+            \SetAlgoLined
+            % \LinesNumbered
+            \SetKwProg{Fn}{Function}{:}{end}
+            \SetKwInOut{Input}{Input}
+            \SetKwInOut{Output}{Output}
+            \Fn{$\operatorname{romberg}(f, a, b, n)$}{
+                \Input{$f$ is the integrand, $a$ is the lower bound, $b$ is the upper bound, $n$ is the number of subintervals.}
+                \Output{The integral of $f(x)$ over the interval $[a, b]$ using $1, 2, 3 \ldots, n$ subintervals.}
+                $h \gets b - a$\;
+                $R_{1, 1} \gets [f(a) + f(b)] \cdot h / 2$\;
+                \For {$k \gets 2$ \KwTo $n$} {
+                    $\displaystyle R_{k, 1} \gets \frac{1}{2} \left[ R_{k - 1, 1} + h \sum\limits_{j = 1}^{2^{k - 2}} f(a + (2j - 1) \cdot h / 2) \right]$\;
+                    \For {$j \gets 2$ \KwTo $k$} {
+                        $\displaystyle R_{k, j} \gets R_{k, j - 1} + \frac{R_{k, j - 1} - R_{k - 1, j - 1}}{4^{j - 1} - 1}$\;
+                    }
+                    $h \gets h / 2$\;
+                }
+                \Return $[R_{1,1}, R_{2, 2}, R_{3, 3}, \ldots, R_{n, n}]$\;
+            }
+        \end{algorithm}
+        \end{minipage}
+
+    \item Run the script file \verb`lab_12_script.m` to verify your function is working.
+    \item Uncomment line 18 through line 52 in the script file \verb`lab_12_script.m`, and add more test functions to \verb`lab_12_script.m`:
+        \begin{enumerate}[(a)]
+            \item $\displaystyle \int_{0}^{\pi} x^3 \sin{x} \, dx$.
+            \item $\displaystyle \int_{1}^{5} x^3 (\ln{x})^2 \, dx$.
+            \item $\displaystyle \int_{e^e}^{e^4} \ln{\ln{\ln{x}}} \, dx$.
+        \end{enumerate}
+    \item Add plots for Romberg integration error of test functions $g(x)$, $h(x)$,  $p(x)$ against $n$, which are also indicated in the comments (around line 65 through line 69).
+    \item Run \verb`diary('lab_12_output.txt')`, run the script file \verb`lab_12_script.m`, then call \verb`diary off` to save the output to the specified text file.
+    \item Upload \verb`lab_12_output.txt`, \verb`lab_12_figure.pdf`, \verb`lab_12_script.m`, and \verb`lab_12_romberg.m` to Overleaf, recompile and submit the .pdf report to WyoCourses.
+\end{enumerate}

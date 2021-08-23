@@ -1,0 +1,25 @@
+\begin{verbatim}
+\subsection{LU Decomposition}
+
+Given the linear system \eqref{eq:varyRHS}
+\begin{equation}
+  \label{eq:varyRHS}
+  \begin{cases}
+    3x + y + z = m \\
+    x - 5y + 2z = 5 \\
+    2x + y + 5z = 10
+  \end{cases}
+\end{equation}
+where $m = 0, 1, 2, \ldots, 20$. Using LU Decomposition we can obtain the
+solution to the linear system \eqref{eq:varyRHS} for corresponding $m$
+(see Table \ref{tab:solution} and Figure \ref{fig:solution}).
+
+\input{../src/solution.tex}
+
+\begin{figure}[!hbtp]
+  \centering
+  \includegraphics[width=0.85\textwidth]{../src/lab_06_plot.pdf}
+  \caption{Solution to the linear system vs. $m$}
+  \label{fig:solution}
+\end{figure}
+\end{verbatim}
