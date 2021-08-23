@@ -1,0 +1,54 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.07| in the Command Window, and type \verb|edit lab_07_script| in the Command Window to edit \verb|lab_07_script.m|.
+
+%---------------------------------------------
+\section{Debugging}
+%---------------------------------------------
+In this lab you will learn how to debug code and develop ways to make code more readable by employing good coding practices.
+
+Your goal is to fix the bugs in \verb|lab_07_script.m| and \verb|lab_07_function.m|. These files solve the linear system $A \mathbf{x} = \mathbf{b}$ given by
+\begin{align*}
+    4 x_1 + 3 x_2       & = 24 \\
+    3 x_1 + 4 x_2 - x_3 & = 30 \\
+    - x_2 + 4 x_3       & = -24 \\
+\end{align*}
+using the Gauss-Seidel method with Successive Over Relaxation (SOR). This method gives means to speed up the convergence of our iterative method. The only change from the Gauss-Seidel method is the use of a parameter $\omega$. Depending on the choice of this $\omega$, the Gauss Seidel method can be performed in significantly less iterations than the original method. The iterative step in this method is now
+$$
+x_i^{(k)} = (1 - \omega) x_i^{(k-1)} + \frac{\omega}{a_{ii}} \left[ b_i - \sum_{j=1}^{i-1} a_{ij} x_j^{(k)} - \sum_{j=i+1}^{n} a_{ij} x_j^{(k - 1)} \right].
+$$
+These code files are riddled with various errors. Your task is to look through the code and correct all of the issues you encounter. Methods for doing this efficiently will be explained in the lab. Note that the necessary corrections may involve any of the following:
+
+\begin{enumerate}[1.]
+    \item changing variable names,
+    \item fixing indexing,
+    \item suppressing output,
+    \item changing code style,
+    \item adding proper indentation,
+    \item adding comments,
+    \item removing redundant code.
+\end{enumerate}
+
+Once you finish debugging, call \verb|diary('lab_07_output.txt')|, then run the script \verb|lab_07_script.m|, and call \verb|diary off| to save the output. The outputs and figures should be exactly same as those on the following pages. You will upload files \verb|sor_gauss_seidel.tex|, \verb|lab_07_script.m|, \verb|lab_07_function.m|, \verb|lab_07_output.txt|, \verb|lab_07_plot_1.pdf|, and \verb|lab_07_plot_2.pdf|. Recompile, and submit the generated \verb|.pdf| file on WyoCourses.
+
+\newpage
+
+\section{Results}
+
+\subsection{Output}
+
+\lstinputlisting[style=Plain]{../Math.3341.Lab.07.ans/lab_07_output.txt}
+
+\subsection{Formatted output}
+
+\input{../Math.3341.Lab.07.ans/sor_gauss_seidel.tex}
+
+\newpage
+
+\subsection{Plots}
+\begin{figure}[!hbtp]
+    \centering
+    \includegraphics[width=0.80\textwidth]{../Math.3341.Lab.07.ans/lab_07_plot_1.pdf}
+    \includegraphics[width=0.80\textwidth]{../Math.3341.Lab.07.ans/lab_07_plot_2.pdf}
+    \caption{Solution and residual}
+    \label{fig:sol}
+\end{figure}
+

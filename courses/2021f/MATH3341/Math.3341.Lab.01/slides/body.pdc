@@ -1,0 +1,414 @@
+% MATH 3341: Introduction to Scientific Computing Lab
+% Libao Jin
+% August 23, 2021
+
+# Lab 01: Introduction to MATLAB and \LaTeX{}
+
+### MATLAB Interface
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{MATLAB.PNG}
+\end{figure}
+
+## Basic Math Operations
+
+###
+
+>- Addition: e.g. `3 + 3` or `plus(3, 3)`
+>- Subtraction: e.g. `7 - 9` or `minus(7, 9)`
+>- Multiplication: e.g. `4 * 6` or `times(4, 6)`
+>- Division: e.g. `6 / 3` or `rdivide(6, 3)`
+>- Exponentiation: e.g. `2 ^ 3` or `power(2, 3)`
+
+## Exponential and Natural Logarithm Functions
+
+###
+
+>- $e^x$: `exp(x)`
+>- $\ln{y}$: `log(y)`
+>- $\log_2 a$: `log2(a)`
+>- $\log_{10} b$: `log10(b)`
+
+## Trigonometric Functions
+
+###
+
+>- $\sin x$: `sin(x)`
+>- $\cos x$: `cos(x)`
+>- $\tan x$: `tan(x)`
+>- $\arcsin x$ or $\sin^{-1} x$: `asin(x)`
+>- $\arccos x$ or $\cos^{-1} x$: `acos(x)`
+>- $\arctan x$ or $\tan^{-1} x$: `atan(x)`
+
+## Functions Commonly Used
+
+###
+
+>- `help`: Display help text in Command Window
+>- `doc`: Reference page in Help browser
+>- `pwd`: Show (print) current working directory
+>- `cd`: Change current working directory
+>- `ls`: List directory
+>- `clc`: Clear command window
+>- `clear`: Clear variables and functions from memory
+>- `clf`: Clear current figure
+>- `beep off/on`: turns off/on noise produced by error messages
+>- `diary`: Save text of MATLAB session
+>- `realmin`: Smallest positive normalized floating point number
+>- `realmax`: Largest finite floating point number
+>- `intmin`: Smallest integer value
+>- `intmax`: Largest positive integer value
+>- `eps `: Spacing of floating point numbers
+>- `class`:  Return class name of object
+
+## \LaTeX\ Primer
+
+### Basic structure
+
+```
+\documentclass{article}
+\usepackage{amssmb, amsmath}
+\author{firstName lastName}
+\title{The Title}
+\date{\today}
+\begin{document}
+\maketitle
+\section{Demo of Section}
+\subsection{Demo of Subsection}
+Here is the body.
+\end{document}
+```
+
+### Math Environment/Mode
+
+```
+\begin{equation}
+% Put equation here
+\end{equation}
+
+$$
+% Put equation here
+$$
+```
+
+```
+$Put inline equation here$
+```
+
+### Multi-line equations
+
+```
+\begin{align}
+% Put multiline equation here
+\end{align}
+```
+
+### Examples
+
+```
+\begin{equation*}
+E = mc^2.
+\end{equation*}
+```
+or
+```
+$$
+E = mc^2.
+$$
+```
+generates
+$$
+E = mc^2.
+$$
+
+### Examples
+
+```
+\begin{align}
+    \frac{d}{dx} f(g(x))
+       & = \frac{d f(g(x))}{d g(x)} \frac{d g(x)}{dx}
+    \\ & = f'(g(x)) g'(x).
+\end{align}
+```
+generates
+\begin{align}
+    \frac{d}{dx} f(g(x))
+       & = \frac{d f(g(x))}{d g(x)} \frac{d g(x)}{dx}
+    \\ & = f'(g(x)) g'(x).
+\end{align}
+
+### Subscripts and Supscripts
+
+* $a_{1}$: `$a_{1}$`
+* $a^{2}$: `$a^{2}$`
+* $a_{3}^{4}$: `$a_{3}^{4}$`
+* $a_{\text{sub}}^{\text{sup}}$: `$a_{\text{sub}}^{\text{sup}}$`
+
+### Fractions
+
+* $\displaystyle \frac{\text{numerator}}{\text{denominator}}$: `$\frac{numerator}{denominator}$`
+* $\displaystyle \frac{3}{5}$: `$\frac{3}{5}$`
+
+### Matrices
+
+```
+$$
+\begin{matrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{matrix}
+$$
+```
+
+Replace `matrix` with `bmatrix`, `pmatrix`, `vmatrix`, `Vmatrix`, repectively.
+
+### `matrix` environment
+
+```
+$$
+\begin{matrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{matrix}
+$$
+```
+
+generates
+
+$$
+\begin{matrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{matrix}
+$$
+
+### `bmatrix` environment
+
+```
+$$
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+$$
+```
+
+generates
+
+$$
+\begin{bmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{bmatrix}
+$$
+
+### `pmatrix` environment
+
+```
+$$
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{pmatrix}
+$$
+```
+
+generates
+
+$$
+\begin{pmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{pmatrix}
+$$
+
+### `vmatrix` environment
+
+```
+$$
+\begin{vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{vmatrix}
+$$
+```
+
+generates
+
+$$
+\begin{vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{vmatrix}
+$$
+
+### `Vmatrix` environment
+
+```
+$$
+\begin{Vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{Vmatrix}
+$$
+```
+
+generates
+
+$$
+\begin{Vmatrix}
+a_{11} & a_{12} \\
+a_{21} & a_{22} \\
+\end{Vmatrix}
+$$
+
+### `enumerate` Environment
+
+```
+\begin{enumerate}[1.]
+    \item Monday
+    \item Tuesday
+    \item Wednesday
+\end{enumerate}
+```
+
+generates
+
+\begin{enumerate}[1.]
+    \item Monday
+    \item Tuesday
+    \item Wednesday
+\end{enumerate}
+
+### `itemize` Environment
+
+```
+\begin{itemize}
+    \item Monday
+    \item Tuesday
+    \item Wednesday
+\end{itemize}
+```
+
+generates
+
+\begin{itemize}
+    \item Monday
+    \item Tuesday
+    \item Wednesday
+\end{itemize}
+
+### `lstlisting` Environment
+
+```
+\begin{lstlisting}[style=MATLAB]
+clear; clc;
+x = linspace(0, 2 * pi, 100);
+y = sin(x);
+figure
+plot(x, y)
+xlabel('$x$')
+ylabel('$y$')
+title('$y = \sin{x}$')
+\end{lstlisting}
+```
+
+### `lstlisting` Environment
+
+```
+\lstinputlisting[style=MATLAB]{script.m}
+```
+
+### Greek Letters
+
+* `\alpha`: $\alpha$
+* `\beta`: $\beta$
+* `\gamma`: $\gamma$
+* `\rho`: $\rho$
+* `\phi`: $\phi$
+* `\varphi`: $\varphi$
+* $\vdots$
+
+### Standard Function Names
+
+* `\cos`: $\cos$
+* `\arccos`: $\arccos$
+* `\dim`: $\dim$
+* `\log`: $\log$
+* `\ln`: $\ln$
+* `\limsup`: $\limsup$
+* `\min`: $\min$
+* `\deg`: $\deg$
+* `\operatorname{span}`: $\operatorname{span}$
+
+### Binary Operation/Relation Symbols
+
+* `\pm`: $\pm$
+* `\oplus`: $\oplus$
+* `\perp`: $\perp$
+* `\subset`: $\subset$
+* `\in`: $\in$
+* `\leq`: $\leq$
+* `\geq`: $\geq$
+* `\neq`: $\neq$
+
+### Arrow Symbols
+
+* `\leftarrow`: $\leftarrow$
+* `\Leftarrow`: $\Leftarrow$
+* `\rightarrow`: $\rightarrow$
+* `\Rightarrow`: $\Rightarrow$
+* `\leftrightarrow`: $\leftrightarrow$
+* `\Leftrightarrow`: $\Leftrightarrow$
+* `\mapsto`: $\mapsto$
+* `\leadsto`: $\leadsto$
+* `\implies`: $\implies$
+* `\impliedby`: $\impliedby$
+* `\iff`: $\iff$
+
+### Miscellaneous Symbols
+
+* `\infty`: $\infty$
+* `\nabla`: $\nabla$
+* `\partial`: $\partial$
+* `\cdots`: $\cdots$
+* `\ldots`: $\ldots$
+* `\vdots`: $\vdots$
+* `\ddots`: $\ddots$
+* `\forall`: $\forall$
+* `\exists`: $\exists$
+* `\emptyset`: $\emptyset$
+* `\int`: $\int$
+* `\iint`: $\iint$
+
+### Styles
+
+* `\mathcal{A}`: $\mathcal{A}$
+* `\mathbb{A}`: $\mathbb{A}$
+* `\mathfrak{A}`: $\mathfrak{A}$
+* `\mathsf{A}`: $\mathsf{A}$
+* `\mathbf{A}`: $\mathbf{A}$
+
+### Text Mode: Accents and Symbols
+
+* `\'{o}`: \text{\'{o}}
+* `\.{o}`: \text{\.{o}}
+* `\b{o}`: \text{\b{o}}
+* `\o`: \text{\o}
+* `\ae`: \text{\ae}
+* `\"{o}`: \text{\"{o}}
+* `\copyright`: \text{\copyright}
+*  `\S`: \text{\S}
+
+### Text formatting
+
+* `\textit{Italic}`: \textit{\rmfamily Italic}
+* `\textsc{Small Caps}`: \textsc{\rmfamily Small Caps}
+* `\textsl{Slanted}`: \textsl{\rmfamily Slanted}
+* `\textup{Upright}`: \textup{\rmfamily Upright}
+* `\textbf{Boldface}`: \textbf{\rmfamily Boldface}
+* `\textmd{Medium}`: \textmd{\rmfamily Medium}
+* `\texttt{TypeWriter}`: \texttt{TypeWriter}
+* `\textsf{Sans Serif}`: \textsf{Sans Serif}
+* `\textrm{Roman}`: \textrm{Roman}

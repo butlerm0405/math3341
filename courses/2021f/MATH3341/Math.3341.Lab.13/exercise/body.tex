@@ -1,0 +1,22 @@
+If you haven't downloaded and unzipped \href{https://libaoj.in/courses/2021f/MATH3341/zip/Math.3341.zip}{\texttt{Math.3341.zip}}. Download and unzip it under \verb|H:| (H Drive if you are working on the Remote Lab). Change the current working directory by typing \verb|cd H:\Math.3341\Math.3341.Lab.13| in the Command Window, and type \verb|edit lab_13_script| in the Command Window to edit \verb|lab_13_script.m|.
+
+%---------------------------------------------
+\section{Random Numbers and Histogram}
+%---------------------------------------------
+\begin{enumerate}[(a)]
+    \item Create a vector \verb`x_uniform` of length $N = 10000$ random numbers, which are uniformly distributed on the interval $[-3.5, 3.5]$, using \verb`rand`.
+    \item Create a vector \verb`x_normal` of length $N = 10000$ random numbers, which are normally distributed with zero mean $\mu = 0$ and unit variance $\sigma^2 = 1$, using \verb`randn`.
+    \item Create historgrams for \verb`x_uniform` and \verb`x_normal`.
+\end{enumerate}
+%---------------------------------------------
+\section{Monte Carlo Integration}
+\begin{enumerate}[(a)]
+    \item Open \verb`lab_13_example.m` and \verb`monteCarlo.m`. Go through \verb`lab_13_example.m`, see how the script is written to use Monte Carlo Integration to integrate the function $f(x, y) = 1$ over the disk $x^2 + y^2 \leq 1$. Then convert the Monte Carlo Integration part in the script to a function in \verb|monteCarlo.m|.
+    \item Then in \verb`lab_13_script.m`, use \verb`monteCarlo.m` to evaluate the following integral using $N = 100000$ samples:
+        $$
+        \int_{-1}^{1} \int_{2 x^2}^{1 + x^2} (x + 2y) \, dy \, dx.
+        $$
+    \item Use the built-in function \verb`integral2` to evaluate the above integral, and compare the error between these two integrations.
+\end{enumerate}
+%---------------------------------------------
+Finally, call \verb|diary('lab_13_output.txt')|, run the script \verb|lab_13_script.m|, and then call \verb|diary off| to save the output. Upload the script file \verb|lab_13_script.m|, function file \verb|monteCarlo.m|, figure file \verb|lab_13_figure.pdf|, and output file \verb|lab_13_output.txt| to Overleaf. Recompile, and submit the generated .pdf file on WyoCourses.

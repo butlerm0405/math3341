@@ -1,0 +1,104 @@
+% MATH 3341: Introduction to Scientific Computing Lab
+% Libao Jin
+% October 18, 2021
+
+# Lab 09: Ill-conditioned Matrices and Finite Precision Arithmetic
+
+## Ill-Conditioned Matrices
+
+### Vector Norm
+
+Let $\mathbf{x} = [x_{1}, x_{2}, \ldots, x_{n}]^{T} \in \mathbb{R}^{n}$.
+
+> * `norm(x, 1)`: $\displaystyle \|\mathbf{x}\|_{1} = \sum_{i = 1}^{n} |x_{i}|$.
+> * `norm(x, 2)`: $\displaystyle \|\mathbf{x}\|_{2} = \left(\sum_{i = 1}^{n} x_{i}^2\right)^{1/2} = (\mathbf{x} \cdot \mathbf{x})^{1/2}$.
+> * `norm(x, inf)`: $\displaystyle \|\mathbf{x}\|_{\infty} = \max_{i = 1, \ldots, n} \{|x_{i}|\}$.
+
+### Matrix Norm
+
+Let $\mathbf{x} = [x_{1}, x_{2}, \ldots, x_{n}]^{T} \in \mathbb{R}^{n}$ and $A \in \mathbb{R}^{m \times n}$.
+
+> * `norm(A, 1)`: $\displaystyle \|A\|_{1} = \max_{\substack{\forall \mathbf{x} \in \mathbb{R}^{n} \\ \mathbf{x} \ne \mathbf{0}}} \frac{\|A \mathbf{x}\|_{1}}{\|\mathbf{x}\|_{1}} = \max_{1 \leq j \leq n} \sum_{i=1}^{m} |a_{ij}|$.
+> * `norm(A, 2)`: $\displaystyle \|A\|_{2} = \max_{\substack{\forall \mathbf{x} \in \mathbb{R}^{n} \\ \mathbf{x} \ne \mathbf{0}}} \frac{\|A \mathbf{x}\|_{2}}{\|\mathbf{x}\|_{2}} = \sigma_{\max}(A) = \sqrt{\lambda_{\max}(A^{T} A)}$, $\sigma_{\max}(A)/\lambda_{\max}(A)$ means the largest singular value/eigenvalue of matrix $A$.
+> * `norm(A, inf)`: $\displaystyle \|A\|_{\infty} = \max_{\substack{\forall \mathbf{x} \in \mathbb{R}^{n} \\ \mathbf{x} \ne \mathbf{0}}} \frac{\|A \mathbf{x}\|_{\infty}}{\|\mathbf{x}\|_{\infty}} = \max_{i = 1, \ldots, m}  \sum_{j=1}^{n} |a_{ij}|$.
+> * `norm(A, 'fro')`: $\displaystyle \|A\|_{F} =  \left(\sum_{i = 1}^{n} \sum_{j = 1}^{n} a_{ij}^{2}\right)^{1/2}$, Frobenius norm.
+
+### Condition Number
+
+The *condition number* of nonsingular matrix $A$ relative to the norm $\|\cdot \|$ is
+$$
+\kappa(A) = \|A\| \cdot \|A^{-1}\|.
+$$
+
+> * If the condition number is high, then the matrix is said to be *ill-conditioned*.
+> * If $\kappa(A) = \infty$, then the matrix $A$ is singular, i.e., the matrix is not invertible.
+
+### `cond`: condition number with respect to inversion
+
+> * `cond(A, 1)`: 1-norm condition number of `A`.
+> * `cond(A, 2)`: 2-norm condition number of `A`, i.e., $\kappa_{2}(A) = \|A\|_{2} \|A^{-1}\|_{2} = \frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}$.
+> * `cond(A, inf)`: Infinity-norm condition number of `A`.
+> * `cond(A, 'fro')`: Frobenius-norm condition number of `A`.
+> * `cond(A)`: same as `cond(A, 2)`.
+> * Example
+>   ```
+>   A = magic(5);
+>   condA1 = cond(A, 2)
+>   condA2 = norm(A, 2) * norm(inv(A), 2)
+>   condA3 = max(sqrt(eig(A'*A))) * max(sqrt(eig(inv(A'*A))))
+>   condA4 = max(sqrt(eig(A'*A))) / min(sqrt(eig(A'*A)))
+>   ```
+
+### Ill-Conditioned Matrix: Hilbert Matrix
+
+A Hilbert matrix is a square matrix with elements defined by
+$$
+H_{ij} = \frac{1}{i + j - 1}.
+$$
+For example, a $3 \times 3$ Hilbert matrix is
+$$
+H_{3 \times 3} =
+\begin{bmatrix}
+1 & 1/2 & 1/3 \\
+1/2 & 1/3 & 1/4 \\
+1/3 & 1/4 & 1/5 \\
+\end{bmatrix}.
+$$
+Note that this matrix is symmetric and positive definite.
+
+### `hilb`: Hilbert matrix and `invhilb`: inverse Hilbert matrix
+
+> * `hilb(n)`: the `n`-by-`n` matrix with elements `1/(i+j-1)`, which is a famous example of a ill-conditioned matrix.
+> * `invhilb(n)`: the inverse of the `n`-by-`n` Hilbert matrix. The result is exact for `n`  less than about `15`.
+> * Example:
+>   ```
+>   H = hilb(10);
+>   invH1 = inv(H);
+>   invH2 = invhilb(10);
+>   norm(invH1 - invH2)
+>   ```
+
+### Ill-Conditioned Linear System
+
+A linear system $A \mathbf{x} = \mathbf{b}$ is said to be ill-conditioned if $A$ is a ill-conditioned matrix. The typical numerical methods for solving linear systems such as Jacobi method, Gauss-Seidel method would become unreliable. Example: $H \mathbf{x} = \mathbf{b} \implies \mathbf{x} = H^{-1} \mathbf{b}$.
+```
+n = 10;
+H = hilb(n);
+invH = invhilb(n);
+b = rand(n, 1);
+x = invH * b;
+x1 = inv(H) * b;
+x2 = H \ b;
+norm(x - x1)
+norm(x - x2)
+```
+
+## Finite Precision Arithmetic
+
+### Finite Precision Arithmetic
+
+Computers can only store values up to a certain level of accuracy. Past this level, the computer will round values, thus causes the round-off error. What this means is that arithmetic does not work exactly as we expect. Namely, arithmetic is no longer commutative, associative, or distributive. The lab exercises will demonstrate some of the issues that arise.
+
+### IEEE 754
+
+[https://babbage.cs.qc.cuny.edu/IEEE-754/](https://babbage.cs.qc.cuny.edu/IEEE-754/)

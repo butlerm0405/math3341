@@ -1,0 +1,4 @@
+lab_13_script
+ Monte Carlo     Built-in        Error
+    2.128283     2.133333     0.005051
+diary off

@@ -1,0 +1,80 @@
+lab_05_examples
+Example 1 -- Output pi in different formats
+
+ans =
+
+    3.1416
+
+ans =
+    3.1416
+ans =
+    3.1416
+ans =
+   3.141592653589793
+ans =
+   3.1416e+00
+ans =
+     3.141592653589793e+00
+ans =
+       3.1416
+ans =
+          3.14159265358979
+ans =
+     3.1416e+000
+ans =
+    3.14159265358979e+000
+ans =
+     355/113   
+Example 2 -- Using a for-loop to output pi in different formats
+
+ans =
+
+    3.1416
+
+ans =
+    3.1416
+ans =
+    3.1416
+ans =
+   3.141592653589793
+ans =
+   3.1416e+00
+ans =
+     3.141592653589793e+00
+ans =
+       3.1416
+ans =
+          3.14159265358979
+ans =
+     3.1416e+000
+ans =
+    3.14159265358979e+000
+ans =
+     355/113   
+
+     x       exp(x)
+  0.00   1.00000000
+  0.20   1.22140276
+  0.40   1.49182470
+  0.60   1.82211880
+  0.80   2.22554093
+  1.00   2.71828183
+
+\begin{table}[!hbtp]
+\centering
+\caption{Exponential function}
+\label{tab:exp}
+\begin{tabular}{cc}
+\hline
+   $x$ &    $\exp(x)$ \\
+\hline
+$0.00$ & $1.00000000$ \\
+$0.20$ & $1.22140276$ \\
+$0.40$ & $1.49182470$ \\
+$0.60$ & $1.82211880$ \\
+$0.80$ & $2.22554093$ \\
+$1.00$ & $2.71828183$ \\
+\hline
+\end{tabular}
+\end{table}
+diary off

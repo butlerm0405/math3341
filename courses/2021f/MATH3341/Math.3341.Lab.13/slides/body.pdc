@@ -1,0 +1,212 @@
+% MATH 3341: Introduction to Scientific Computing Lab
+% Libao Jin
+% November 22, 2021
+
+# Lab 13: Random Numbers, Histogram \& Monte Carlo Integration
+
+## Random Numbers and Histogram
+
+### `histogram`: Plots a histogram.
+
+* `histogram(x)`: plots a histogram of `x`.
+* `histogram(x, m)`:  plots a histogram of `x` using `m` bins.
+
+### `rand`: Uniformly distributed pseudorandom numbers.
+
+> * `rand`: generate a random number that is uniformly distributed on $(0, 1)$.
+> * `rand(m, n)` or `rand([m, n])` generates a `m`-by-`n` uniformly distributed random matrix.
+> * `rand(n)`: generates an `n`-by-`n` uniform distributied random matrix.
+> * `rand(size(A))` generates a uniformly distributed random matrix of the same size as `A`.
+> * Example:
+>   ```
+>   left = -2;
+>   right = 2;
+>   % Uniformly distributed on [left, right]
+>   numbers = rand(10, 1) * (right - left) + left;
+>   histogram(numbers);
+>   ```
+
+### `randn`: Normally distributed pseudorandom numbers.
+
+> * `randn`: generate a randnom number that is normally distributed with mean $0$ and standard deviation $1$.
+> * `randn(m, n)` or `randn([m, n])` generates a `m`-by-`n` normally distributed randnom matrix.
+> * `randn(n)`: generates an `n`-by-`n` uniform distributied randnom matrix.
+> * `randn(size(A))` generates a normally distributed randnom matrix of the same size as `A`.
+> * Example:
+>   ```
+>   mu = -2;    % mean
+>   sigma = 2;  % standard devidation
+>   % Normally distributed with mean -2 and standard deviation 2
+>   numbers = randn(10, 1) * sigma  + mu;
+>   histogram(numbers);
+>   ```
+
+## Monte Carlo Integration
+
+### 1-D Monte Carlo Integration
+
+\begin{align*}
+\int_a^b f(x) \, dx
+   & = \int_a^b \frac{f(x)}{p(x)} p(x) \, dx
+\\ & = E[f(X) / p(X)]
+\\ & \approx \frac{1}{N} \sum_{i = 1}^{N} \frac{f(x_i)}{p(x_i)}
+\\ & = \frac{1}{N} \sum_{i = 1}^{N} \frac{f(x_i)}{1 / (b - a)}
+\\ & = \frac{b - a}{N} \sum_{i = 1}^{N} f(x_i),
+\end{align*}
+where $x_1, x_2, \ldots, x_N$ are uniformly distributed on $[a, b]$, hence $p(x_i) = \frac{1}{b - a}, i = 1, 2, \ldots, N$.
+
+### 2-D Monte Carlo Integration
+
+\begin{align*}
+\int_a^b \int_c^d f(x, y) \, dy \, dx
+   & = \int_a^b \int_c^d \frac{f(x, y)}{p(x, y)} p(x, y) \, dy \, dx
+\\ & = \int_a^b \int_c^d \frac{f(x, y)}{p_X(x) p_Y(y)} p_X(x) p_Y(y) \, dy \, dx
+\\ & = \int_a^b \frac{1}{p_X(x)} \left[ \int_c^d \frac{f(x, y)}{p_Y(y)} p_Y(y) \, dy \right] \, p_X(x) \, dx
+\\ & = E\left[\frac{f(X, Y)}{p_Y(Y) p_X(X)}\right]
+\\ & \approx \frac{1}{N} \sum_{i = 1}^{N} \frac{f(x_i, y_i)}{p_X(x_i) p_{Y}(y_{i})}.
+\end{align*}
+
+### 2-D Monte Carlo Integration
+
+\begin{align*}
+\int_a^b \int_c^d f(x, y) \, dy \, dx
+   & \approx \frac{1}{N} \sum_{i = 1}^{N} \frac{f(x_i, y_i)}{p_X(x_i) p_{Y}(y_{i})}
+\\ & = \frac{1}{N} \sum_{i = 1}^{N} \frac{1}{[1 / (b - a)] [1 / (d - c)]} f(x_i, y_i)
+\\ & = \frac{(b - a) (d - c)}{N} \sum_{i = 1}^{N} f(x_i, y_i),
+\end{align*}
+where $X$ and $Y$ are independent and identically uniformly distributed, hence $p(x, y) = p_X(x) p_Y(y)$, and $p_X(x) = \frac{1}{b - a}$, $p_Y(y) = \frac{1}{d - c}$.
+
+### 2-D Monte Carlo Integration Example
+
+\begin{equation*}
+  \int_{D: x^{2} + y^{2} \leq 1} f(x, y) \, dA
+  = \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+\end{equation*}
+
+\begin{figure}[!hbtp]
+  \centering
+  \begin{tikzpicture}
+    \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+    \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+    \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+    \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+    \foreach \i in {1,2,...,100}{%
+        \typeout{Point \i}%
+        \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+        \typeout{X \x}%
+        \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+        \typeout{Y \y}%
+        \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+        \typeout{im Kreis?: \k}%
+        \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+        \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+    }
+  \end{tikzpicture}
+  \caption{When $N = 100$.}
+  \label{fig:mi100}
+\end{figure}
+
+
+### 2-D Monte Carlo Integration Example
+
+\begin{equation*}
+  \int_{D: x^{2} + y^{2} \leq 1} f(x, y) \, dA
+  = \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+\end{equation*}
+
+\begin{figure}[!hbtp]
+  \centering
+  \begin{tikzpicture}
+    \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+    \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+    \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+    \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+    \foreach \i in {1,2,...,1000}{%
+        \typeout{Point \i}%
+        \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+        \typeout{X \x}%
+        \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+        \typeout{Y \y}%
+        \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+        \typeout{im Kreis?: \k}%
+        \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+        \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+    }
+  \end{tikzpicture}
+  \caption{When $N = 1000$.}
+  \label{fig:mi1000}
+\end{figure}
+
+### 2-D Monte Carlo Integration Example
+
+\begin{equation*}
+  \int_{D: x^{2} + y^{2} \leq 1} f(x, y) \, dA
+  = \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+\end{equation*}
+
+\begin{figure}[!hbtp]
+  \centering
+  \begin{tikzpicture}
+    \draw[fill=gray, opacity=0.1] (\radius,0) arc(0:360:\radius) -- (0,0) -- cycle;
+    \draw[gray, opacity=0.25] (-\radius,-\radius) rectangle (\radius,\radius);
+    \draw[->] (-1.1*\radius,0) -- (1.1*\radius,0);
+    \draw[->] (0,-1.1*\radius) -- (0,1.1*\radius);
+    \foreach \i in {1,2,...,5000}{%
+        \typeout{Point \i}%
+        \pgfmathsetmacro\x{2*\radius*rnd-\radius}%
+        \typeout{X \x}%
+        \pgfmathsetmacro\y{2*\radius*rnd-\radius}%
+        \typeout{Y \y}%
+        \pgfmathsetmacro\k{(pow(\x,2)+pow(\y,2)) <pow(\radius,2)}%
+        \typeout{im Kreis?: \k}%
+        \pgfmathparse{ifthenelse(\k==1,"red","blue")}%
+        \fill[\pgfmathresult] (\x,\y)circle(0.5pt);%
+    }
+  \end{tikzpicture}
+  \caption{When $N = 5000$.}
+  \label{fig:mi5000}
+\end{figure}
+
+### 2-D Monte Carlo Integration Example
+
+\begin{equation*}
+  \int_{D: x^{2} + y^{2} \leq 1} f(x, y) \, dA
+  = \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+\end{equation*}
+
+> 1. Since $-1 \leq x \leq 1$ and $-1 \leq -\sqrt{1 - x^{2}} \leq y \leq \sqrt{1 - x^{2}} \leq 1$, the bounding box is $[-1, 1] \times [-1, 1]$ on which we can generate the random points $(x_{i}, y_{i}), i = 1, 2, \ldots, N$.
+> 2. We are integrating over the disk, so we need to discard the points outside the disk (blue points):
+>    \begin{equation*}
+>    g(x_{i}, y_{i}) = \begin{cases}
+>       f(x_{i}, y_{i}) & \text{if~$(x_{i}, y_{i})$ is inside the disk} ,  \\
+>       0 & \text{otherwise}.
+>    \end{cases}
+>    \end{equation*}
+> 3. Therefore, we can obtain
+>    \begin{equation*}
+>      \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+>      \approx \frac{[1 - (-1)] \cdot [1 - (-1)]}{N} \sum_{i = 1}^{N} g(x_{i}, y_{i}).
+>    \end{equation*}
+
+\begin{equation*}
+  \int_{D: x^{2} + y^{2} \leq 1} f(x, y) \, dA
+  = \int_{-1}^{1} \int_{-\sqrt{1 - x^{2}}}^{\sqrt{1 - x^{2}}} f(x, y) \, dy \, dx
+\end{equation*}
+
+### 2-D Monte Carlo Integration Example
+
+How do we check whether $(x_{i}, y_{i})$ is inside the disk?
+\begin{equation*}
+  -\sqrt{1 - x_{i}^{2}} \leq y_{i} \leq \sqrt{1 - x_{i}^{2}}
+  \implies y_{i}^{2} \leq 1 - x_{i}^{2}
+  \implies x_{i}^{2} + y_{i}^{2} \leq 1.
+\end{equation*}
+
+In MATLAB: we can define $g(x, y)$ as follows:
+```
+g = @(x,y) f(x,y).*(-sqrt(1-x.^2)<=y & y<=sqrt(1-x.^2));
+```
+or
+```
+g = @(x,y) f(x,y) .* (x.^2 + y.^2 <= 1);
+```

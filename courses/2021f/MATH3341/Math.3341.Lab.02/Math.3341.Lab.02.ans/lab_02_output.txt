@@ -1,0 +1,189 @@
+lab_02_script
+vec1 =
+     1     2     3     4     5     6     7     8     9
+vec2 =
+    18    16    14    12    10     8     6     4     2
+vec1Length =
+     9
+vec2Length =
+     9
+vec1Product =
+      362880
+vecProduct =
+    18    32    42    48    50    48    42    32    18
+dotProduct1 =
+   330
+dotProduct2 =
+   330
+dotProduct3 =
+   330
+mat1 =
+     8     1     6
+     3     5     7
+     4     9     2
+mat1ColSum =
+    15    15    15
+mat1RowSum =
+    15
+    15
+    15
+mat1DiagSum =
+    15
+mat2 =
+     1     2     3
+     4     5     6
+     7     8     9
+matProduct1 =
+    54    69    84
+    72    87   102
+    54    69    84
+matProduct2 =
+     8     2    18
+    12    25    42
+    28    72    18
+mat3 =
+    54    69    84
+    72    87   102
+    54    69    84
+     8     2    18
+    12    25    42
+    28    72    18
+sumAll =
+   900
+mat3ColMin =
+     8     2    18
+mat3RowMax =
+    84
+   102
+    84
+    18
+    42
+    72
+rowIndex =
+     4
+     5
+     4
+     4
+     6
+colIndex =
+     1
+     1
+     2
+     3
+     3
+mat3 =
+    54    69    84    69
+    72    87   102    87
+    54    69    84    69
+     8     2    18     2
+    12    25    42    25
+    28    72    18    72
+mat3 =
+    54    69    84    69   127
+    72    87   102    87   127
+    54    69    84    69   124
+     8     2    18     2   127
+    12    25    42    25    36
+    28    72    18    72   108
+mat3 =
+    54    69    84    69   127     0
+    72    87   102    87   127    36
+    54    69    84    69   124    72
+     8     2    18     2   127   108
+    12    25    42    25    36   144
+    28    72    18    72   108   180
+mat3Size =
+     6     6
+helloChar =
+    'hello '
+worldChar =
+    'world'
+helloString = 
+    "hello "
+worldString = 
+    "world"
+helloWorldChar1 =
+    'hello world'
+helloWorldString1 = 
+  1×2 <a href="matlab:helpPopup string" style="font-weight:bold">string</a> array
+    "hello "    "world"
+helloWorldChar2 =
+    'helloworld'
+helloWorldString2 = 
+    "hello world"
+helloWorldChar1Class =
+    'char'
+helloWorldChar2Class =
+    'char'
+helloWorldString1Class =
+    'string'
+helloWorldString2Class =
+    'string'
+helloWorldChar1Length =
+    11
+helloWorldChar2Length =
+    10
+helloWorldString1Length =
+     2
+helloWorldString2Length =
+     1
+uwGraySize =
+   960   960
+maxEigenvalue =
+   2.2850e+05
+uwGrayNewSize =
+   960   960
+  Name                           Size                Bytes  Class     Attributes
+
+  D                            960x960            14745600  double    complex   
+  V                            960x960            14745600  double    complex   
+  colIndex                       5x1                    40  double              
+  dotProduct1                    1x1                     8  double              
+  dotProduct2                    1x1                     8  double              
+  dotProduct3                    1x1                     8  double              
+  helloChar                      1x6                    12  char                
+  helloString                    1x1                   150  string              
+  helloWorldChar1                1x11                   22  char                
+  helloWorldChar1Class           1x4                     8  char                
+  helloWorldChar1Length          1x1                     8  double              
+  helloWorldChar2                1x10                   20  char                
+  helloWorldChar2Class           1x4                     8  char                
+  helloWorldChar2Length          1x1                     8  double              
+  helloWorldString1              1x2                   204  string              
+  helloWorldString1Class         1x6                    12  char                
+  helloWorldString1Length        1x1                     8  double              
+  helloWorldString2              1x1                   166  string              
+  helloWorldString2Class         1x6                    12  char                
+  helloWorldString2Length        1x1                     8  double              
+  mat1                           3x3                    72  double              
+  mat1ColSum                     1x3                    24  double              
+  mat1DiagSum                    1x1                     8  double              
+  mat1RowSum                     3x1                    24  double              
+  mat2                           3x3                    72  double              
+  mat3                           6x6                   288  double              
+  mat3ColMin                     1x3                    24  double              
+  mat3RowMax                     6x1                    48  double              
+  mat3Size                       1x2                    16  double              
+  matProduct1                    3x3                    72  double              
+  matProduct2                    3x3                    72  double              
+  maxEigenvalue                  1x1                     8  double              
+  rowIndex                       5x1                    40  double              
+  steamboat                    650x960              624000  uint8               
+  steamboatLeft                650x480              312000  uint8               
+  steamboatRight               650x480              312000  uint8               
+  sumAll                         1x1                     8  double              
+  uwGray                       960x960              921600  uint8               
+  uwGrayNew                    960x960              921600  uint8               
+  uwGrayNewSize                  1x2                    16  double              
+  uwGraySize                     1x2                    16  double              
+  uwName                       310x960              297600  uint8               
+  vec1                           1x9                    72  double              
+  vec1Length                     1x1                     8  double              
+  vec1Product                    1x1                     8  double              
+  vec2                           1x9                    72  double              
+  vec2Length                     1x1                     8  double              
+  vecProduct                     1x9                    72  double              
+  worldChar                      1x5                    10  char                
+  worldString                    1x1                   150  string              
+
+diary off
