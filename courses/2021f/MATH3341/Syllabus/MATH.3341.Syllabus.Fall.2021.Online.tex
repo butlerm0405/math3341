@@ -1,0 +1,248 @@
+\documentclass[11pt, letterpaper]{article}
+% -----------------------------------
+% Course Information
+% -----------------------------------
+\newcommand{\courseNum}{MATH 3341}
+\newcommand{\courseTitle}{Introduction to Scientific Computing Lab}
+\newcommand{\semester}{Fall 2021}
+\newcommand{\numLabs}{14}
+\usepackage{fontspec}
+\setmonofont[Scale=MatchLowercase]{Monaco}
+% ---------------------------------------
+% MACROS
+% ---------------------------------------
+\usepackage[compact]{titlesec} % Allows customization of section headings
+\usepackage{geometry}
+\setlength{\voffset}{0in}
+\setlength{\footskip}{20pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\geometry{
+    left = 1in,
+    right = 1in,
+    top = 1in,
+    bottom = 1in,
+}
+\usepackage{paralist}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{wasysym}
+\usepackage{multirow}
+\definecolor{darkblue}{rgb}{0,0,0.6}
+\definecolor{darkred}{rgb}{.7,0,0}
+\definecolor{darkgreen}{rgb}{0,0.6,0}
+\definecolor{red}{rgb}{.98,0,0}
+\usepackage[colorlinks,pagebackref,pdfusetitle,urlcolor=darkblue,citecolor=darkblue,linkcolor=black,bookmarksnumbered,plainpages=false]{hyperref}
+\usepackage{quoting}
+\quotingsetup{vskip=0pt}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\usepackage{lastpage}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[shortlabels]{enumitem} % gives compactenum item & other custom itemize environments
+% ---------------------------------------
+% Custom Columns - Allow fixed width cols
+% ---------------------------------------
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}\footnotesize}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+%%%%%%%%%%% Document Formatting %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ---------------------------------------
+% MARGINS
+% ---------------------------------------
+% \oddsidemargin=0in
+% \evensidemargin=0in
+% \textwidth=6.5in
+% \topmargin=-0.5in
+% \textheight=9in
+% \headheight = 39pt
+% \headsep=10pt
+% \parindent=0in
+% \setlength{\parindent}{0pt}
+% \parskip=10pt
+% --------------------------
+% HEADER
+% --------------------------
+\fancyhead{}
+%\lhead{\courseNum{}: \courseTitle{} \\Course Syllabus}
+%\rhead{\semester{}}
+% --------------------------
+% FOOTER
+% --------------------------
+\cfoot{\thepage\ of \pageref{LastPage}}
+% --------------------------
+% FIRST PAGE HEADER/FOOTER
+% --------------------------
+\fancypagestyle{plain}{
+   \fancyhf{}
+   %\lhead{\Large{\textbf{\courseNum{}: \courseTitle{}} } \\ Course Syllabus}
+   %\rhead{\semester{}}
+   \renewcommand{\headrulewidth}{0pt}
+   % \cfoot{\thepage\ of \pageref{LastPage}}
+   \fancyfoot[C]{\thepage\ of \pageref{LastPage}}
+}
+
+\pagestyle{plain}
+% -----------------------------------
+% Custom Section Headings
+% -----------------------------------
+\titleformat{\section}[display]{\bfseries\large}{}{0pt}{}[{\titlerule[0.8pt]\vspace{5pt}}]
+\titlespacing{\section}{0pt}{5pt}{0pt}
+\titleformat{\subsection}{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titlespacing{\subsection}{0pt}{3pt}{0pt}
+\title{\vspace{-2ex}\courseNum: \courseTitle \vspace{-2ex}}
+\author{University of Wyoming, \semester \\ Syllabus \vspace{-2ex}}
+\date{}
+
+\makeatletter
+\def\@maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\bfseries\Large \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\thispagestyle{plain}
+\maketitle
+
+\begin{table}[!htbp]
+% \rule{6in}{0.4pt}
+% \begin{minipage}[t]{.75\textwidth}
+  \begin{tabular}{rlrl}
+    \textbf{Instructor:} & Libao Jin & \textbf{Course Date:} & 01/27/2021 -- 05/06/2021 \\
+    \textbf{Email:} & \href{mailto:ljin1@uwyo.edu?subject=[MATH-3341]}{\texttt{ljin1@uwyo.edu}} \hspace{5pt} & \textbf{Course Page:} & \url{https://math-3341.libaoj.in} \\
+    % \textbf{Office:} & Zoom &  \textbf{Office Hours:} & MWF: 08:40 AM -- 09:30 AM \\
+  \end{tabular}
+\end{table}
+
+% ----------------------------------------------------
+\section*{Schedule}
+% ----------------------------------------------------
+All sections meet on Zoom with Remote Lab (\url{https://vdesktop.uwyo.edu}):
+\begin{table}[!hbtp]
+  \centering
+  \begin{tabular}{cll}
+    % \toprule
+    Section & Time & Link \\
+    \midrule
+    01 & 02:30 PM -- 03:20 PM Wednesday & Zoom: \url{https://uwyo.zoom.us/j/97308546048} \\
+    02 & 02:55 PM -- 03:45 PM Thursday & Zoom: \url{https://uwyo.zoom.us/j/97308546048}  \\
+    Office Hours &  04:05 PM -- 04:55 PM TR & Discord Invite: \url{https://discord.gg/Zhm3WfKTJg} \\
+    % \bottomrule
+  \end{tabular}
+\end{table}
+
+All course communication will occur via Discord. All course materials will be posted on both course page and WyoCourses. All assignments will be submitted and graded on WyoCourses.
+
+% ----------------------------------------------------
+\section*{Course Description}
+% ----------------------------------------------------
+The objective of this lab is to expose students to the basic syntax and tools in MATLAB so that they succeed in writing correct computer code for the solution of scientific computing problems. Offered S/U only. \textbf{Prerequisite:} Concurrent or previous enrollment in MATH 3340. The tentative lab topics are as below:
+\begin{enumerate}
+  \setlength\itemsep{0em}
+  \item Introduction to MATLAB and \LaTeX{}
+  \item Variables, Arrays and Scripts
+  \item Functions and Control Flows
+  \item Plotting Data
+  \item Formatting Output and \LaTeX{}
+  \item LU Decomposition
+  \item Debugging \& Good Coding Practices
+  \item MATLAB Interpolation Routines and Their Derivatives
+  \item Ill-conditioned Matrices and Finite Precision Arithmetic
+  \item MATLAB 3D Plots
+  \item MATLAB Integration Routines \& Gauss Quadrature
+  \item Romberg Integration
+  \item Random Numbers, Histogram \& Monte Carlo Integration
+  \item Built-in ODE Solvers in MATLAB
+\end{enumerate}
+
+
+% ----------------------------------------------------
+\section*{Lab Assignments \& Grading}
+% ----------------------------------------------------
+There will be 14 lab assignments for the course. Each assignment is worth 20 points and will be graded with a rubric which can be viewed in WyoCourses. Lab assignments will be due at 11:59 PM on Tuesday in the following week. No late assignments will be accepted. In order to receive a Satisfactory in this course you must
+\begin{itemize}[itemsep=0pt, topsep=0pt]
+  \item Submit all 14 lab assignments
+  \item Have a cumulative average of 70\% or better on your lab assignments.
+\end{itemize}
+% \newpage
+
+% ----------------------------------------------------
+\section*{Attendance Policy}
+% ----------------------------------------------------
+Class attendance and participation, including the case when delivery is online, are required. University sponsored absences are cleared through the Office of Student Life; please do let me know if you need to be away, and you are still required to turn in the lab assignment on time.
+
+% ----------------------------------------------------
+\section*{COVID-19 Policy}
+% ----------------------------------------------------
+Because of the pandemic, all class interaction is moved online for the Spring 2021 semester. During this pandemic, you must abide by all UW policies and public health rules put forward by the City of Laramie, the University of Wyoming and the Sate of Wyoming to promote the health and well-being of fellow students and your own personal self-care. The current policy is provided for review at: \url{https://www.uwyo.edu/alerts/campus-return/index.html}.
+
+% ----------------------------------------------------
+\section*{Classroom Behavior Policy}
+% ----------------------------------------------------
+At all times, treat your presence in the classroom as you would a job. As with other disruptive behaviors, we have the right to dismiss you from the classroom (Zoom and physical), or other class activities if you fail to abide by the COVID-19 policies. These behaviors will be referred to the Dean of Students Office using the UWYO Cares Reporting Form for Student Code of Conduct processes.
+
+% ----------------------------------------------------
+\section*{HyFlex, Zoom, and WyoCourses expectations}
+% ----------------------------------------------------
+As with all UW coursework, this course will be educational and useful to you. I will respond to questions, concerns, and feedback in a timely manner. Your responsibilities include:
+\begin{itemize}
+  \setlength\itemsep{0em}
+  \item Give and receive feedback from me and your classmates respectfully and constructively in all interactions. This includes in Zoom chats, on WyoCourses boards, and within physical classroom spaces.
+  \item Actively engage in civil discourse in a respectful manner. Use professional language in all course related forums.
+  \item Communicate professionally. Whenever you send class-related email or messages, please include a clear, specific subject line and use the body of the email or message to explain the purpose for the email and any attached materials. Conduct yourself professionally.
+  \item Meet assignment deadlines. We expect that you're interacting with course material multiple times during the week.
+  \item Ask for help when you need it. For academic assistance for this course please contact me for available resources. For Dean of Students assistance please see: \url{https://www.uwyo.edu/dos/student-recourses/covid-19-student-resources.html}
+  \item Please let us know if you notice another student who needs help in our (anonymous) WyoCares referral option (\url{https://www.uwyo.edu/dos/students-concern/index.html}).
+\end{itemize}
+
+% ----------------------------------------------------
+\section*{Additional Information}
+% ----------------------------------------------------
+\subsection*{Accommodations for Students with Disabilities} If you have a physical, learning, or psychological disability and require accommodations, please let me know as soon as possible. You will need to register with, and provide documentation of your disability to, the University Disability Support Services (UDSS) in SEO, room 109 Knight Hall, 766-6189, TTY: 766-3073.
+% \begin{quoting}
+% If you feel that you have what people refer to as math anxiety, I urge you to call or visit the Counseling Center in room 341, Knight Hall and get some help.  The phone number is 766-2187.  Many people with math anxiety tend to score lower on math exams, which is something that may reduce your chance to pass this course. I have suffered from this myself. Communicate with me if you are having difficulties!
+% \end{quoting}
+
+\subsection*{Academic Dishonesty} The University of Wyoming is built upon a strong foundation of integrity, respect and trust. All members of the university community have a responsibility to be honest and the right to expect honesty from others. Any form of academic dishonesty is unacceptable to our community and will not be tolerated. Any suspected violations of standards of academic honesty should be reported to the instructor, department head, or dean. For more information, please consult UW Regulation 6-802.
+
+\subsection*{Classroom Statement on Diversity} The University of Wyoming values an educational environment that is diverse, equitable, and in-clusive. The diversity that students and faculty bring to class, including age, country of origin, culture, disability, economic class, ethnicity, gender identity, immigration status, linguistic, political affiliation, race, religion, sexual orientation, veteran status, world view, and other social and cultural diversity is valued, respected, and considered a resource for learning.
+
+\subsection*{Duty to Report} UW faculty are committed to supporting students and upholding the University’s non-discrimination policy. Under Title IX, discrimination based upon sex and gender is prohibited. If you experience an incident of sex- or gender-based discrimination, we encourage you to report it. While you may talk to a faculty member, understand that as a “Responsible Employee” of the University, the faculty member MUST report information you share about the incident to the university’s Title IX Coordinator (you may choose whether you or anyone involved is identified by name). If you would like to speak with someone who may be able to afford you privacy or confidentiality, there are people who can meet with you. Faculty can help direct you or you may find info about UW policy and resources at \url{http://www.uwyo.edu/reportit}
+
+You do not have to go through the experience alone. Assistance and resources are available, and you are not required to make a formal complaint or participate in an investigation to access them.
+
+\subsection*{Student Resources}
+\begin{itemize}[itemsep=0pt, topsep=0pt]
+  \item Disability Support Services: \url{udss@uwyo.edu}, 766-3073, 128 Knight Hall, \url{www.uwyo.edu/udss}
+  \item Counseling Center: \url{uccstaff@uwyo.edu}, 766-2187, 766-8989 (After hours), 341 Knight Hall, \url{www.uwyo.edu/ucc}
+  \item Academic Affairs: 766-4286, 312 Old Main, \url{www.uwyo.edu/acadaffairs}
+  \item Dean of Students Office: \url{dos@uwyo.edu}, 766-3296, 128 Knight Hall, \url{www.uwyo.edu/dos}
+  \item UW Police Department: \url{uwpd@uwyo.edu}, 766-5179, 1426 E Flint St, \url{www.uwyo.edu/uwpd}
+  \item Student Code of Conduct Website: \url{www.uwyo.edu/dos/conduct}
+  \item Student Remote Lab: \url{https://vdesktop.uwyo.edu}
+\end{itemize}
+
+\vspace{-10pt}
+\begin{center}
+\textbf{Changes might be made in the syllabus as the course proceeds. Any changes will be announced in class and via WyoCourses along with an updated syllabus.}
+\end{center}
+
+\end{document}
