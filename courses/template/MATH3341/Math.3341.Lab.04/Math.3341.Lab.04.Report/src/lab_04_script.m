@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 04: Plotting Data
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 09/13/2021
 
 clear  % clears all variables

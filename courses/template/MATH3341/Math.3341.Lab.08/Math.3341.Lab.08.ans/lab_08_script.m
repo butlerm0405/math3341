@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 08: MATLAB Interpolation Routines and Their Derivatives
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 10/11/2021
 
 clc; clear; close all;

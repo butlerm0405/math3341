@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 05: Formatting Output and LaTeX
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 09/20/2021
 
 clear; close all; clc;

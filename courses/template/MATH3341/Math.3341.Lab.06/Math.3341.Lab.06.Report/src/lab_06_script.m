@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 06: LU Decomposition
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 09/27/2021
 
 clear; close all; clc;

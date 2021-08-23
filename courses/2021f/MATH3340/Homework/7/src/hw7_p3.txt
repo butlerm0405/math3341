@@ -1,0 +1,7 @@
+Summary for f(x) = x^2 + cos(x): (REPLACE THIS FILE WITH YOUR OWN)
+    N    I_gauss
+    1   4.000000
+    2   6.950103
+    3   7.159114
+    4   7.151795
+    5   7.151930

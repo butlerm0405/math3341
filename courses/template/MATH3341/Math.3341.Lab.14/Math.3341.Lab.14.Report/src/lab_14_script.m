@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 14: Built-in ODE Solvers in MATLAB
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 11/29/2021
 
 clear; close all; warning off;

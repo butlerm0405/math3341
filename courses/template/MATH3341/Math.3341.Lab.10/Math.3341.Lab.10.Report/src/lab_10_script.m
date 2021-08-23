@@ -1,6 +1,6 @@
 % Math 3341, Fall 2021
 % Lab 10: MATLAB 3D Plots
-% Author: Libao Jin
+% Author: Melissa Butler
 % Date: 11/01/2021
 
 clear; close all; clc;
