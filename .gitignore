@@ -94,9 +94,6 @@ acs-*.bib
 #(r)(e)ledmac/(r)(e)ledpar
 *.end
 *.?end
-*.[1-9]
-*.[1-9][0-9]
-*.[1-9][0-9][0-9]
 *.[1-9]R
 *.[1-9][0-9]R
 *.[1-9][0-9][0-9]R
@@ -537,3 +534,5 @@ zsdoc/data
 !/tests/_output/.gitkeep
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos,latex,python,zsh
+.jekyll-cache/
+_site/
